@@ -1,7 +1,5 @@
-# HEBRA CANON v0.7
+# HEBRA CANON v0.8
 ## Fuente oficial del proyecto
-
-Este archivo define qué es HEBRA, qué reglas no deben olvidarse y cómo continuar el trabajo.
 
 ## 1. Propósito
 HEBRA existe para ayudar a las personas a resolver problemas de forma segura, verificable,
@@ -19,111 +17,92 @@ No se añade gasto operativo nuevo hasta que HEBRA genere ingresos propios.
 No vender datos personales. El dinero no compra peso de evidencia.
 
 ### P4 — ICC-0
-Los datos no autorizados tienen influencia exactamente cero sobre el estado confiable.
+Datos no autorizados tienen influencia cero sobre el estado confiable.
 
 ### P5 — Núcleo Cristal
 La IA puede proponer, pero no aprobar ni promover.
 
 ### P6 — Sin aprendizaje online directo
-Inputs de usuario no cambian automáticamente modelos, políticas, claves, código ni conocimiento confiable.
+Inputs de usuario no cambian automáticamente modelos, políticas, claves, código ni conocimiento.
 
 ### P7 — Historia append-only
-Las correcciones crean nuevas versiones; no borran silenciosamente el pasado.
+El pasado no se reescribe silenciosamente.
 
 ### P8 — Determinismo
-Mismos inputs confiables + misma política + misma versión => mismo resultado canónico.
+Mismos inputs + misma versión + misma política => mismo resultado canónico.
 
 ### P9 — Durabilidad
-El proyecto vive en archivos versionados y exportables, no en recuerdos.
+La memoria oficial vive en archivos versionados y exportables.
 
 ### P10 — Explicación sencilla obligatoria
-Antes y después de cambios importantes se explica qué, por qué, riesgo, resultado y siguiente paso.
+Cambios importantes se explican antes y después en lenguaje claro.
 
 ### P11 — Estado persistente
-`STATE.json` debe decir siempre dónde estamos y qué sigue.
+`STATE.json` indica siempre dónde estamos y qué sigue.
 
 ### P12 — No fingir certeza
 Si algo no está demostrado, se dice.
 
 ### P13 — Persistencia no es autoridad
-GitHub guarda HEBRA, pero no decide por sí solo qué es verdad.
+GitHub guarda el proyecto pero no decide por sí solo qué es verdad.
 
 ### P14 — Piso Constitucional de Seguridad
-Una política normal puede aumentar seguridad, nunca bajar los mínimos constitucionales.
+Políticas ordinarias pueden endurecer, nunca debilitar mínimos constitucionales.
 
 ### P15 — Independencia real
-Dos nombres no cuentan como dos controles si comparten una raíz capaz de controlarlos.
+Dependencias compartidas conocidas se colapsan antes de contar autoridad.
 
 ### P16 — Divergencia significa parada
-Para una transición canónica crítica, resolvers independientes deben producir exactamente el mismo
-verdict, transition hash y next trusted root.
-
-Una diferencia no se resuelve por mayoría ni por IA:
-**HALT / NO PROMOTION**.
+Tres resolvers críticos deben coincidir exactamente; una diferencia produce HALT.
 
 ### P17 — Diversidad técnica comprobada
-Diversidad de software, build, runtime o criptografía sólo cuenta si sus raíces de fallo son
-suficientemente distintas y están declaradas.
+Una diversidad sólo cuenta cuando sus raíces de fallo están declaradas y son suficientemente distintas.
 
 ### P18 — Agilidad criptográfica
-Ningún algoritmo concreto es eterno. Las operaciones de raíz deben poder migrar de suites por épocas,
-sin borrar la verificabilidad histórica.
+Operaciones de raíz deben poder migrar entre suites por épocas.
 
-## 3. Propiedades actuales
+### P19 — Semántica versionada
+La interpretación de una versión del protocolo queda congelada.
+Cambiar el significado exige nueva versión.
+
+### P20 — Especificación ejecutable y vectores
+Las reglas críticas deben tener:
+- especificación ejecutable;
+- ejemplos buenos;
+- ejemplos malos;
+- propiedades metamórficas;
+- comparación entre implementaciones.
+
+### P21 — Desconocido se rechaza
+Campos o versiones desconocidas no se ignoran silenciosamente.
+
+## 3. Propiedades
 
 ### ICC-0
-Una entrada no autorizada no cambia el estado confiable.
+Entrada no autorizada no cambia estado confiable.
 
 ### ICE-0
 Sin ingresos propios, gasto operativo nuevo = 0.
 
-### BTR-8 — candidata
-En el modelo estructural v0.5, las rutas principales estudiadas requieren 8 dominios independientes.
+### BTR-8 / eBTR
+Barrera de autoridad modelada, ajustada por dependencias reales.
+
+### CMC-2
+En topología técnica objetivo, ninguna causa técnica catastrófica modelada aislada basta.
 No demostrado en producción.
 
-### eBTR
-Antes de contar dominios se colapsan dependencias compartidas conocidas.
+### Determinismo semántico v0.8
+14 vectores oficiales fueron ejecutados contra dos implementaciones prototipo sin divergencias.
+Un bug intencional fue detectado por el differential harness.
 
-### CMC-2 — candidata
-En la topología técnica objetivo v0.7, ninguna causa técnica catastrófica modelada por sí sola basta
-para saltarse la validación canónica. La ruta técnica más corta modelada requiere 2 causas independientes.
+Esto es evidencia de prueba, no demostración universal.
 
-No demostrado en producción.
+## 4. Continuidad
+Leer `CANON.md`, luego `STATE.json`, explicar el estado y continuar desde el siguiente paso.
 
-## 4. Arquitectura resumida
-
-PERSONA
-  ↓
-MAR INERTE
-  ↓
-EVIDENCIA + VERIFICADORES INDEPENDIENTES
-  ↓
-PUERTA DE PROMOCIÓN
-  ↓
-3 RESOLVERS INDEPENDIENTES
-  ↓
-ACUERDO EXACTO O PARADA
-  ↓
-NÚCLEO CRISTAL
-  ↓
-SNAPSHOT DETERMINISTA
-  ↓
-RECOMENDACIÓN CON PRUEBA
-
-## 5. Continuidad
-Al iniciar una sesión:
-1. leer `CANON.md`;
-2. leer `STATE.json`;
-3. explicar en palabras sencillas dónde quedó HEBRA;
-4. continuar desde `next_recommended_step`;
-5. registrar decisiones, pruebas y fallos.
-
-## 6. Transparencia
-No ocultar vulnerabilidades, pruebas fallidas, supuestos ni limitaciones.
-
-## 7. Estado resumido
-COMMON-MODE-001 está completado a nivel de modelo.
+## 5. Estado resumido
+SPEC-COMMON-001 está completado a nivel de prototipo de especificación y pruebas.
 
 Siguiente objetivo:
-proteger la especificación misma y estudiar cómo detectar errores que podrían repetirse en tres
-implementaciones diferentes porque todas interpretaron mal la misma regla.
+construir la primera utilidad local y de coste cero para una persona real en dominios de bajo riesgo,
+sin necesitar servidor ni datos sensibles.
