@@ -1,13 +1,13 @@
-# HEBRA CANON v0.6
+# HEBRA CANON v0.7
 ## Fuente oficial del proyecto
 
-Este archivo define qué es HEBRA, qué reglas no se deben olvidar y cómo continuar el trabajo.
+Este archivo define qué es HEBRA, qué reglas no deben olvidarse y cómo continuar el trabajo.
 
 ## 1. Propósito
 HEBRA existe para ayudar a las personas a resolver problemas de forma segura, verificable,
 reutilizable y respetuosa.
 
-## 2. Principios que no se pueden saltar
+## 2. Principios no negociables
 
 ### P1 — Ayudar primero
 El beneficio humano está por encima del crecimiento, el dinero y el uso.
@@ -16,87 +16,95 @@ El beneficio humano está por encima del crecimiento, el dinero y el uso.
 No se añade gasto operativo nuevo hasta que HEBRA genere ingresos propios.
 
 ### P3 — No vender a la persona
-No vender datos personales. No usar datos sensibles para publicidad.
-El dinero no compra peso de evidencia.
+No vender datos personales. El dinero no compra peso de evidencia.
 
 ### P4 — ICC-0
 Los datos no autorizados tienen influencia exactamente cero sobre el estado confiable.
 
 ### P5 — Núcleo Cristal
-Los datos pueden entrar, pero no pueden modificar por sí solos el conocimiento confiable.
 La IA puede proponer, pero no aprobar ni promover.
 
 ### P6 — Sin aprendizaje online directo
-Inputs de usuario no cambian automáticamente modelos, políticas, reglas, verificadores,
-claves, umbrales, código ni conocimiento confiable.
+Inputs de usuario no cambian automáticamente modelos, políticas, claves, código ni conocimiento confiable.
 
 ### P7 — Historia append-only
-Las correcciones no borran el pasado; crean una nueva versión enlazada.
+Las correcciones crean nuevas versiones; no borran silenciosamente el pasado.
 
 ### P8 — Determinismo
-Con los mismos datos promovidos, política y resolver, se debe obtener el mismo estado confiable.
+Mismos inputs confiables + misma política + misma versión => mismo resultado canónico.
 
 ### P9 — Durabilidad
-El proyecto vive en archivos versionados, verificables y exportables; no en recuerdos.
+El proyecto vive en archivos versionados y exportables, no en recuerdos.
 
-### P10 — Explicación simple obligatoria
-Antes y después de un cambio importante se explica qué, por qué, riesgo, resultado y siguiente paso.
+### P10 — Explicación sencilla obligatoria
+Antes y después de cambios importantes se explica qué, por qué, riesgo, resultado y siguiente paso.
 
 ### P11 — Estado persistente
-Siempre debe existir `STATE.json` con versión, decisiones, pruebas, problemas y siguiente paso.
+`STATE.json` debe decir siempre dónde estamos y qué sigue.
 
 ### P12 — No fingir certeza
-Si algo no está demostrado, HEBRA debe decir “no sabemos todavía”.
+Si algo no está demostrado, se dice.
 
 ### P13 — Persistencia no es autoridad
-GitHub, servidores, nubes y copias guardan HEBRA, pero ninguno decide por sí solo qué es verdad.
+GitHub guarda HEBRA, pero no decide por sí solo qué es verdad.
 
 ### P14 — Piso Constitucional de Seguridad
-Las políticas normales pueden aumentar la seguridad, pero no reducir los mínimos del Núcleo Cristal.
+Una política normal puede aumentar seguridad, nunca bajar los mínimos constitucionales.
 
 ### P15 — Independencia real
-Dos cuentas no cuentan como dos controles independientes si dependen de la misma raíz de control.
+Dos nombres no cuentan como dos controles si comparten una raíz capaz de controlarlos.
 
-### P16 — Colapso de Dependencias (DCR-1)
-Si varias aprobaciones comparten una dependencia crítica conocida que puede controlarlas,
-HEBRA las agrupa como un único dominio de fallo efectivo para esa decisión.
+### P16 — Divergencia significa parada
+Para una transición canónica crítica, resolvers independientes deben producir exactamente el mismo
+verdict, transition hash y next trusted root.
 
-### P17 — Desconocido no es independiente (UNI-1)
-Si no se puede demostrar la independencia de una dependencia crítica, HEBRA no puede usarla para
-aumentar el nivel de seguridad declarado.
+Una diferencia no se resuelve por mayoría ni por IA:
+**HALT / NO PROMOTION**.
 
-## 3. Invariantes y propiedades
+### P17 — Diversidad técnica comprobada
+Diversidad de software, build, runtime o criptografía sólo cuenta si sus raíces de fallo son
+suficientemente distintas y están declaradas.
 
-### ICC-0 — Invariante Cero de Contaminación
-Una entrada que no cumple la promoción no cambia el estado confiable.
+### P18 — Agilidad criptográfica
+Ningún algoritmo concreto es eterno. Las operaciones de raíz deben poder migrar de suites por épocas,
+sin borrar la verificabilidad histórica.
 
-### ICE-0 — Invariante de Coste Económico Cero
-Mientras HEBRA no tenga ingresos propios, el gasto operativo nuevo es 0.
+## 3. Propiedades actuales
 
-### BTR-8 — Barrera estructural candidata
-El modelo v0.5 exige 8 posiciones independientes para las tres rutas estudiadas.
+### ICC-0
+Una entrada no autorizada no cambia el estado confiable.
 
-### eBTR — Barrera efectiva
-La seguridad real se calcula después de colapsar dependencias compartidas.
-HEBRA sólo puede afirmar BTR-8 para una topología real si su eBTR comprobado es al menos 8.
+### ICE-0
+Sin ingresos propios, gasto operativo nuevo = 0.
 
-Estado actual: PROBADO EN MODELOS / NO DEMOSTRADO EN PRODUCCIÓN.
+### BTR-8 — candidata
+En el modelo estructural v0.5, las rutas principales estudiadas requieren 8 dominios independientes.
+No demostrado en producción.
 
-## 4. Arquitectura conceptual
+### eBTR
+Antes de contar dominios se colapsan dependencias compartidas conocidas.
+
+### CMC-2 — candidata
+En la topología técnica objetivo v0.7, ninguna causa técnica catastrófica modelada por sí sola basta
+para saltarse la validación canónica. La ruta técnica más corta modelada requiere 2 causas independientes.
+
+No demostrado en producción.
+
+## 4. Arquitectura resumida
 
 PERSONA
   ↓
 MAR INERTE
   ↓
-CERTIFICADOS DE INDEPENDENCIA
-  ↓
-COLAPSO DE DEPENDENCIAS
-  ↓
-VERIFICADORES SEPARADOS
+EVIDENCIA + VERIFICADORES INDEPENDIENTES
   ↓
 PUERTA DE PROMOCIÓN
   ↓
-NÚCLEO CRISTAL + PISO DE SEGURIDAD
+3 RESOLVERS INDEPENDIENTES
+  ↓
+ACUERDO EXACTO O PARADA
+  ↓
+NÚCLEO CRISTAL
   ↓
 SNAPSHOT DETERMINISTA
   ↓
@@ -106,20 +114,16 @@ RECOMENDACIÓN CON PRUEBA
 Al iniciar una sesión:
 1. leer `CANON.md`;
 2. leer `STATE.json`;
-3. explicar dónde quedó el proyecto;
+3. explicar en palabras sencillas dónde quedó HEBRA;
 4. continuar desde `next_recommended_step`;
-5. registrar cualquier cambio importante.
+5. registrar decisiones, pruebas y fallos.
 
 ## 6. Transparencia
-No se ocultan fallos, vulnerabilidades, pruebas fallidas, supuestos ni limitaciones.
+No ocultar vulnerabilidades, pruebas fallidas, supuestos ni limitaciones.
 
 ## 7. Estado resumido
-ROOT-TRUST-001 y SYSTEMIC-RISK-001 están completados a nivel de modelo.
-
-Hallazgo clave de v0.6:
-- 12 cuentas en 3 organizaciones pueden equivaler a sólo 2 raíces efectivas;
-- una raíz de firma o identidad compartida puede reducir la barrera efectiva a 1;
-- 12 raíces de control realmente separadas restauran el corte estructural 8.
+COMMON-MODE-001 está completado a nivel de modelo.
 
 Siguiente objetivo:
-estudiar fallos comunes de software, criptografía, compiladores y otros componentes compartidos.
+proteger la especificación misma y estudiar cómo detectar errores que podrían repetirse en tres
+implementaciones diferentes porque todas interpretaron mal la misma regla.
