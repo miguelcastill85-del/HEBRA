@@ -1,0 +1,14 @@
+{
+  "project": "HEBRA",
+  "checkpoint": "v0.5-root-trust",
+  "content_commit_sha": "b5738a0188f33e6fa6ada15bad9526f4dc536657",
+  "content_tree_sha": "85d3f97292ac6aa3e94b762dad1fefd0afae11ce",
+  "state_sha256": "8ca234d6245241e5c062e7031ccb2ba55e880e55871271d192ad13e2afb94f90",
+  "status": "unsigned_bootstrap_checkpoint",
+  "plain_meaning": "This identifies the exact Git state in which HEBRA v0.5 root-trust work was completed.",
+  "limitations": [
+    "The checkpoint is currently stored in the same GitHub repository it references.",
+    "The main branch was observed unprotected at this stage.",
+    "Future versions should publish signed checkpoints to independent locations."
+  ]
+}
