@@ -1,108 +1,76 @@
-# HEBRA CANON v0.8
+# HEBRA CANON v0.9
 ## Fuente oficial del proyecto
 
 ## 1. Propósito
-HEBRA existe para ayudar a las personas a resolver problemas de forma segura, verificable,
+HEBRA existe para ayudar a las personas a aprender de intentos reales de forma segura, verificable,
 reutilizable y respetuosa.
 
 ## 2. Principios no negociables
 
-### P1 — Ayudar primero
-El beneficio humano está por encima del crecimiento, el dinero y el uso.
+1. Ayudar primero.
+2. Gasto operativo nuevo = 0 hasta ingresos propios.
+3. No vender datos personales.
+4. Datos no autorizados tienen influencia cero sobre el estado confiable (ICC-0).
+5. La IA puede proponer, no promover.
+6. No aprendizaje online directo desde inputs de usuario.
+7. Historia append-only.
+8. Mismos inputs y mismas reglas deben dar el mismo resultado.
+9. La memoria oficial vive en archivos versionados, no en recuerdos.
+10. Cada cambio importante se explica en lenguaje sencillo.
+11. `STATE.json` dice siempre dónde estamos.
+12. No fingir certeza.
+13. GitHub es persistencia, no autoridad de verdad.
+14. Políticas normales no pueden debilitar el Piso Constitucional de Seguridad.
+15. Dependencias compartidas se colapsan antes de contar independencia.
+16. Divergencia entre resolvers críticos significa HALT.
+17. Diversidad técnica sólo cuenta si está demostrada.
+18. Criptografía debe poder migrar por épocas.
+19. Cambiar semántica exige cambiar versión.
+20. Las reglas críticas deben tener especificación ejecutable y vectores de prueba.
+21. Campos o versiones desconocidos se rechazan.
+22. El primer producto debe ser local-first y útil sin servidor.
+23. Guardar datos localmente requiere decisión explícita del usuario.
+24. El piloto inicial sólo cubre aprendizaje, organización y hábitos cotidianos de bajo riesgo.
+25. Una huella SHA-256 local es compromiso/consistencia, no prueba de autoría.
 
-### P2 — Coste cero hasta ingresos
-No se añade gasto operativo nuevo hasta que HEBRA genere ingresos propios.
+## 3. Estado del producto
 
-### P3 — No vender a la persona
-No vender datos personales. El dinero no compra peso de evidencia.
+HEBRA Local Pilot v0.9 existe como una sola página HTML.
 
-### P4 — ICC-0
-Datos no autorizados tienen influencia cero sobre el estado confiable.
+Puede:
+- crear un Contrato de Resolución;
+- definir una regla numérica de éxito antes del resultado;
+- bloquear los campos del contrato en la sesión;
+- calcular una huella SHA-256;
+- cerrar un resultado;
+- calcular éxito según la regla original;
+- exportar/importar JSON;
+- recalcular huellas al importar;
+- usar localStorage sólo si el usuario lo activa.
 
-### P5 — Núcleo Cristal
-La IA puede proponer, pero no aprobar ni promover.
+No puede todavía:
+- convertir una experiencia en evidencia global;
+- firmar externamente identidad/autoría;
+- promover al Núcleo Cristal;
+- garantizar seguridad de producción.
 
-### P6 — Sin aprendizaje online directo
-Inputs de usuario no cambian automáticamente modelos, políticas, claves, código ni conocimiento.
+## 4. Privacidad del piloto
 
-### P7 — Historia append-only
-El pasado no se reescribe silenciosamente.
+La página:
+- no usa servidor HEBRA;
+- no usa fetch;
+- no usa WebSocket;
+- no usa analítica;
+- no usa anuncios;
+- bloquea conexiones externas mediante CSP;
+- no guarda localmente por defecto.
 
-### P8 — Determinismo
-Mismos inputs + misma versión + misma política => mismo resultado canónico.
+## 5. Continuidad
 
-### P9 — Durabilidad
-La memoria oficial vive en archivos versionados y exportables.
+Leer `CANON.md`, después `STATE.json`, explicar el estado y continuar desde el siguiente paso.
 
-### P10 — Explicación sencilla obligatoria
-Cambios importantes se explican antes y después en lenguaje claro.
+## 6. Siguiente objetivo
 
-### P11 — Estado persistente
-`STATE.json` indica siempre dónde estamos y qué sigue.
-
-### P12 — No fingir certeza
-Si algo no está demostrado, se dice.
-
-### P13 — Persistencia no es autoridad
-GitHub guarda el proyecto pero no decide por sí solo qué es verdad.
-
-### P14 — Piso Constitucional de Seguridad
-Políticas ordinarias pueden endurecer, nunca debilitar mínimos constitucionales.
-
-### P15 — Independencia real
-Dependencias compartidas conocidas se colapsan antes de contar autoridad.
-
-### P16 — Divergencia significa parada
-Tres resolvers críticos deben coincidir exactamente; una diferencia produce HALT.
-
-### P17 — Diversidad técnica comprobada
-Una diversidad sólo cuenta cuando sus raíces de fallo están declaradas y son suficientemente distintas.
-
-### P18 — Agilidad criptográfica
-Operaciones de raíz deben poder migrar entre suites por épocas.
-
-### P19 — Semántica versionada
-La interpretación de una versión del protocolo queda congelada.
-Cambiar el significado exige nueva versión.
-
-### P20 — Especificación ejecutable y vectores
-Las reglas críticas deben tener:
-- especificación ejecutable;
-- ejemplos buenos;
-- ejemplos malos;
-- propiedades metamórficas;
-- comparación entre implementaciones.
-
-### P21 — Desconocido se rechaza
-Campos o versiones desconocidas no se ignoran silenciosamente.
-
-## 3. Propiedades
-
-### ICC-0
-Entrada no autorizada no cambia estado confiable.
-
-### ICE-0
-Sin ingresos propios, gasto operativo nuevo = 0.
-
-### BTR-8 / eBTR
-Barrera de autoridad modelada, ajustada por dependencias reales.
-
-### CMC-2
-En topología técnica objetivo, ninguna causa técnica catastrófica modelada aislada basta.
-No demostrado en producción.
-
-### Determinismo semántico v0.8
-14 vectores oficiales fueron ejecutados contra dos implementaciones prototipo sin divergencias.
-Un bug intencional fue detectado por el differential harness.
-
-Esto es evidencia de prueba, no demostración universal.
-
-## 4. Continuidad
-Leer `CANON.md`, luego `STATE.json`, explicar el estado y continuar desde el siguiente paso.
-
-## 5. Estado resumido
-SPEC-COMMON-001 está completado a nivel de prototipo de especificación y pruebas.
-
-Siguiente objetivo:
-construir la primera utilidad local y de coste cero para una persona real en dominios de bajo riesgo,
-sin necesitar servidor ni datos sensibles.
+Ejecutar el primer ensayo real del cliente en navegador con un problema de bajo riesgo, exportar el
+registro y comprobar que el ciclo completo persona → contrato → bloqueo → resultado → exportación
+funciona de punta a punta.
