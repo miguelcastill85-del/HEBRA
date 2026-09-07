@@ -1,0 +1,35 @@
+{
+  "project": "HEBRA",
+  "version": "0.7",
+  "candidate_property": "CMC-2",
+  "meaning": "In the target topology, at least two independent catastrophic technical causes are required by the modeled bypass paths.",
+  "results": {
+    "single_resolver_single_crypto": {
+      "minimum_catastrophic_technical_causes": 1,
+      "example_cut": [
+        "crypto-A"
+      ]
+    },
+    "three_resolvers_single_crypto": {
+      "minimum_catastrophic_technical_causes": 1,
+      "example_cut": [
+        "crypto-A"
+      ]
+    },
+    "three_resolvers_dual_crypto": {
+      "minimum_catastrophic_technical_causes": 2,
+      "example_cut": [
+        "crypto-A",
+        "crypto-B"
+      ]
+    },
+    "three_resolvers_dual_crypto_but_shared_runtime": {
+      "minimum_catastrophic_technical_causes": 1,
+      "example_cut": [
+        "shared-runtime-root"
+      ]
+    }
+  },
+  "finding": "Three independent resolver families remove a single resolver-family bypass, but one cryptographic algorithm remains a single point. Dual independent crypto removes that single point. Any newly discovered universal shared root collapses the protection back to one and must be rejected.",
+  "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION"
+}
