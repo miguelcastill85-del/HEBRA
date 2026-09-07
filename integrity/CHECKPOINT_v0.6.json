@@ -1,0 +1,13 @@
+{
+  "project": "HEBRA",
+  "checkpoint": "v0.6-systemic-independence",
+  "content_commit_sha": "d288e7e8d18f0bda1477dfad83cc84b1c6c26b86",
+  "state_sha256": "44be1e2c2a51ea40f6ea4dd7072c74800a3d68c7b150288202074c65cc9cba39",
+  "status": "unsigned_bootstrap_checkpoint",
+  "plain_meaning": "This identifies the Git state where HEBRA v0.6 systemic-independence work was recorded.",
+  "limitations": [
+    "Checkpoint is stored in the same repository it references.",
+    "Main branch was observed unprotected.",
+    "Future checkpoints should be signed and mirrored independently."
+  ]
+}
