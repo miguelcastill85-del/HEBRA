@@ -1,8 +1,8 @@
 {
   "project": "HEBRA",
-  "bundle_version": "0.4-github-bootstrap",
+  "bundle_version": "0.4-github-bootstrap-verified",
   "repository": "miguelcastill85-del/HEBRA",
-  "created_utc": "2026-09-07T04:13:08.699507+00:00",
+  "created_utc": "2026-09-07T04:28:50+00:00",
   "file_count_excluding_manifest": 20,
   "files": [
     {
@@ -12,8 +12,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size_bytes": 803,
-      "sha256": "b00d6de76dcc20f4af3ce343e8354fb67e2d9110d39fbddf82d4ab6aef864d59"
+      "size_bytes": 1020,
+      "sha256": "274f01e0c38a74fddda3b653ae1a66a8019ed6af826eeca39b7a6bcde2cc6260"
     },
     {
       "path": "README.md",
@@ -32,8 +32,8 @@
     },
     {
       "path": "STATE.json",
-      "size_bytes": 3625,
-      "sha256": "19e8bb691130a531a4b3e9f86841e53f04e7dc9865f41c883ebbb7a606704358"
+      "size_bytes": 3953,
+      "sha256": "9591df870a2fad638c9937cc51acc3561dde03380135fc56001d5c3ddebcdffc"
     },
     {
       "path": "docs/CONSTITUTION_ZERO.md",
@@ -106,5 +106,5 @@
       "sha256": "adad1748b3165d70023af037fdf14375a5d94ff0796cafbb048e8b9a9e35a735"
     }
   ],
-  "note": "Git history is the archive; duplicate archive/ copies were intentionally omitted."
+  "note": "Git history is the archive; duplicate archive/ copies are intentionally omitted."
 }

@@ -2,6 +2,8 @@
 
 ## v0.4
 - Se crea el repositorio público `miguelcastill85-del/HEBRA` como memoria versionada principal del proyecto.
+- Se completa y verifica la carga inicial del proyecto en GitHub (21 archivos totales contando README y manifiesto).
+- Se comprueba desde GitHub la recuperación de CANON, STATE, esquema del protocolo y prueba ICC-0.
 - Se crea CANON como fuente oficial del proyecto.
 - Se crea STATE legible por personas y máquinas.
 - Se establece protocolo de continuidad.

@@ -85,8 +85,16 @@
     "write_access_verified": true,
     "role": "Primary durable, versioned project memory; not the only future backup.",
     "bootstrap_date": "2026-09-07",
-    "bootstrap_status": "in_progress_upload_verified_repository_exists",
-    "initial_commit_sha": "6d940e7c3f46ac72ffa061241951e40a484e2cdb"
+    "bootstrap_status": "complete_verified",
+    "initial_commit_sha": "6d940e7c3f46ac72ffa061241951e40a484e2cdb",
+    "bootstrap_commit_sha": "92b69dabf078ccbbd3cd08cd21eafcd3d2be996f",
+    "bootstrap_verified_at_utc": "2026-09-07T04:28:50+00:00",
+    "verified_retrievals": [
+      "CANON.md",
+      "STATE.json",
+      "protocol/hebra_protocol_v0.1.schema.json",
+      "tests/hebra_zero_invariant_test_v0.2.json"
+    ]
   },
   "persistence": {
     "canonical_human_rules": "CANON.md",
@@ -97,7 +105,8 @@
   },
   "completed_milestones": [
     "Z0-specification-and-adversarial-prototypes",
-    "Z1-public-repository-created"
+    "Z1-public-repository-created",
+    "Z1-public-repository-bootstrap-complete"
   ],
-  "state_sha256": "1c0b9ddcb464144583546dbf503b0c896916e3d9c3b946ff31e42a70f483976b"
+  "state_sha256": "5e92a31dd0f3701ed5ddc2597a9c3e2aa86c0ac2b8dcd30a4526cd0454090547"
 }
