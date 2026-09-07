@@ -1,0 +1,28 @@
+{
+  "project": "HEBRA",
+  "model_version": "0.5",
+  "candidate_property": "BTR-8",
+  "global_minimum_independent_compromises": 8,
+  "paths": {
+    "FALSE_EVIDENCE_PROMOTION": {
+      "required_chambers": ["provenance", "measurement", "methodology", "safety"],
+      "minimum_independent_compromises": 8
+    },
+    "MALICIOUS_KERNEL_RELEASE": {
+      "required_chambers": ["release_guardians", "builders", "release_auditors"],
+      "minimum_independent_compromises": 8
+    },
+    "EMERGENCY_ROOT_TAKEOVER": {
+      "required_chambers": ["recovery_guardians", "recovery_auditors"],
+      "minimum_independent_compromises": 8
+    }
+  },
+  "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION",
+  "critical_assumptions": [
+    "Each counted signer is a genuinely independent failure domain.",
+    "One person or organization cannot count in two required chambers for the same critical transition.",
+    "The Crystal Core correctly enforces the constitutional safety floor.",
+    "Cryptography and validator runtime are not universally broken.",
+    "This is a structural model, not a production security proof."
+  ]
+}
