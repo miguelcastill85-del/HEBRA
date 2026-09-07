@@ -1,6 +1,6 @@
 {
   "project": "HEBRA",
-  "state_version": "0.4",
+  "state_version": "0.5",
   "status": "active_design_and_verification",
   "purpose": "Ayudar a las personas a resolver problemas de forma segura, verificable y reutilizable.",
   "non_negotiable_rules": [
@@ -13,6 +13,9 @@
     "ai_may_propose_but_cannot_promote",
     "append_only_history",
     "deterministic_trusted_state",
+    "persistence_is_not_trust_authority",
+    "constitutional_safety_floor_cannot_be_weakened_by_ordinary_policy",
+    "independence_means_distinct_failure_domain",
     "plain_language_explanation_before_and_after_major_changes",
     "persistent_versioned_project_state",
     "uncertainty_must_be_explicit"
@@ -21,92 +24,85 @@
     "ICC-0": "Unauthorized inputs cannot change trusted state.",
     "ICE-0": "No new operational spend until HEBRA generates revenue."
   },
-  "current_architecture": [
-    "person",
-    "inert_ocean",
-    "independent_verifiers",
-    "promotion_airlock",
-    "crystal_core",
-    "deterministic_snapshot",
-    "proof-carrying_recommendation"
-  ],
-  "existing_artifacts": [
-    "hebra_protocol_v0.1.schema.json",
-    "hebra_example_v0.1.json",
-    "hebra_threat_model_v0.1.md",
-    "hebra_reference_engine_v0.1.py",
-    "hebra_simulation_v0.1.json",
-    "HEBRA_ZERO_v0.2_spec.md",
-    "hebra_zero_kernel_v0_2.py",
-    "hebra_zero_invariant_test.json",
-    "HEBRA_Constitucion_Cero_v0.3.md",
-    "HEBRA_Roadmap_Coste_Cero_v0.3.md",
-    "hebra_icc0_bounded_model_v0_3.py",
-    "hebra_icc0_bounded_results_v0_3.json",
-    "HEBRA_ICC0_v0_3.tla"
-  ],
+  "candidate_properties": {
+    "BTR-8": {
+      "meaning": "Modeled contamination paths require at least 8 independent trust-domain compromises.",
+      "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION",
+      "paths": {
+        "false_evidence_promotion": 8,
+        "malicious_kernel_release": 8,
+        "emergency_root_takeover": 8
+      }
+    }
+  },
+  "root_trust_v0_5": {
+    "constitutional_safety_floor": true,
+    "evidence_gate": {
+      "provenance": "2-of-3",
+      "measurement": "2-of-3",
+      "methodology": "2-of-3",
+      "safety": "2-of-3",
+      "cross_chamber_overlap_allowed": false
+    },
+    "kernel_release_gate": {
+      "release_guardians": "4-of-7",
+      "reproducible_builders": "2-of-3",
+      "release_auditors": "2-of-3",
+      "cross_chamber_overlap_allowed": false
+    },
+    "emergency_recovery_gate": {
+      "recovery_guardians": "5-of-9",
+      "recovery_auditors": "3-of-5",
+      "cross_chamber_overlap_allowed": false
+    },
+    "bootstrap_warning": "These distributed chambers are not yet deployed in production."
+  },
   "known_limitations": [
-    "ICC-0 is not yet formally proven for a production implementation.",
+    "BTR-8 depends on genuine independence between failure domains.",
+    "Correlated/common-mode failures are not yet modeled.",
+    "ICC-0 is not yet formally proven for a hardened production implementation.",
     "External real-world truth cannot be guaranteed cryptographically.",
-    "A total compromise of all trust roots remains outside the current guarantee.",
-    "The current reference kernel is a prototype, not hardened production code."
+    "Endpoint compromise can deceive that endpoint even if canonical state remains intact.",
+    "Current GitHub main branch is persistence infrastructure, not a trust root."
+  ],
+  "completed_milestones": [
+    "Z0-specification-and-adversarial-prototypes",
+    "Z1-public-repository-bootstrap-complete",
+    "ROOT-TRUST-001-structural-model-complete"
+  ],
+  "artifacts_v0_5": [
+    "security/ROOT_TRUST_ARCHITECTURE_v0.5.md",
+    "security/ROOT_TRUST_THREAT_TREE_v0.5.md",
+    "security/KEY_ROTATION_RECOVERY_v0.5.md",
+    "docs/ROOT_TRUST_SIMPLE_v0.5.md",
+    "tests/root_trust_min_cut_model_v0.5.py",
+    "tests/root_trust_min_cut_results_v0.5.json"
   ],
   "next_recommended_step": {
-    "id": "ROOT-TRUST-001",
-    "goal": "Design a trust-root architecture that survives compromise of users, servers, AI models and a subset of verifiers.",
+    "id": "SYSTEMIC-RISK-001",
+    "goal": "Modelar fallos compartidos y dependencias ocultas que podrían derribar varias partes independientes a la vez.",
     "deliverables": [
-      "trust-root threat tree",
-      "minimum-cut attack analysis",
-      "key rotation and recovery protocol",
-      "multi-party guardian policy",
-      "simple-language explanation",
-      "machine-readable state update"
+      "common_mode_failure_graph",
+      "independence_validator",
+      "correlated_attack_simulation",
+      "bootstrap_vs_public_trust_modes",
+      "simple_language_explanation",
+      "machine_readable_state_update"
     ]
-  },
-  "communication_rule": {
-    "before_major_action": [
-      "what I will do",
-      "why it matters",
-      "main risk"
-    ],
-    "after_major_action": [
-      "what I did",
-      "result",
-      "what changed",
-      "what remains uncertain",
-      "next step"
-    ],
-    "language": "plain Spanish, child-understandable when possible"
   },
   "github": {
     "repository": "miguelcastill85-del/HEBRA",
     "visibility": "public",
     "status": "active_primary_versioned_memory",
-    "write_access_verified": true,
-    "role": "Primary durable, versioned project memory; not the only future backup.",
-    "bootstrap_date": "2026-09-07",
+    "role": "Primary durable versioned memory, not canonical trust authority.",
     "bootstrap_status": "complete_verified",
-    "initial_commit_sha": "6d940e7c3f46ac72ffa061241951e40a484e2cdb",
-    "bootstrap_commit_sha": "92b69dabf078ccbbd3cd08cd21eafcd3d2be996f",
-    "bootstrap_verified_at_utc": "2026-09-07T04:28:50+00:00",
-    "verified_retrievals": [
-      "CANON.md",
-      "STATE.json",
-      "protocol/hebra_protocol_v0.1.schema.json",
-      "tests/hebra_zero_invariant_test_v0.2.json"
-    ]
+    "main_branch_protected_observed": false,
+    "note": "Unprotected main is a persistence risk to address, but GitHub is not allowed to be the canonical trust root."
   },
-  "persistence": {
-    "canonical_human_rules": "CANON.md",
-    "machine_state": "STATE.json",
-    "change_history": "CHANGELOG.md",
-    "integrity_manifest": "MANIFEST.sha256.json",
-    "continuity_protocol": "docs/CONTINUITY.md"
+  "communication_rule": {
+    "before_major_action": ["what I will do", "why it matters", "main risk"],
+    "after_major_action": ["what I did", "result", "what changed", "what remains uncertain", "next step"],
+    "language": "plain Spanish, child-understandable when possible"
   },
-  "completed_milestones": [
-    "Z0-specification-and-adversarial-prototypes",
-    "Z1-public-repository-created",
-    "Z1-public-repository-bootstrap-complete"
-  ],
-  "state_sha256": "5e92a31dd0f3701ed5ddc2597a9c3e2aa86c0ac2b8dcd30a4526cd0454090547"
+  "state_sha256": "8ca234d6245241e5c062e7031ccb2ba55e880e55871271d192ad13e2afb94f90"
 }
