@@ -1,28 +1,29 @@
 # CHANGELOG
 
+## v0.7
+- Se completa COMMON-MODE-001 a nivel de modelo.
+- Se crea CMC-2 candidato: en la topología objetivo, una sola causa técnica catastrófica modelada no basta.
+- Se establecen tres familias de resolver con acuerdo exacto obligatorio.
+- Una divergencia produce HALT; no existe votación por mayoría para la raíz canónica.
+- Se crea protocolo determinista de cross-check.
+- Se define Root Dual-Suite: dos familias criptográficas independientes para operaciones de raíz.
+- Se define agilidad criptográfica por épocas.
+- Se demuestra que 3 resolvers con una sola criptografía siguen teniendo un punto único.
+- Se demuestra que una raíz técnica universal compartida vuelve a reducir la protección a 1.
+- Se prueban paradas por divergencia, dependencia compartida y criptografía incompleta.
+- Próximo objetivo: SPEC-COMMON-001.
+
 ## v0.6
-- Se crea eBTR: barrera efectiva después de colapsar dependencias compartidas.
-- Se crea DCR-1: aprobaciones con una raíz crítica compartida cuentan como un mismo dominio efectivo.
-- Se crea UNI-1: una independencia desconocida no se presume.
-- Se crea Certificado de Independencia para signers críticos.
-- El modelo demuestra que 12 cuentas en 3 organizaciones pueden reducir el corte efectivo a 2.
-- Una raíz de firma o identidad compartida puede reducir el corte efectivo a 1.
-- El validador acepta 8 raíces separadas y rechaza 8 firmas controladas por sólo 2 organizaciones.
-- Se registra PERSISTENCE-001: la rama main de GitHub fue observada sin protección.
-- Próximo objetivo: COMMON-MODE-001.
+- eBTR, DCR-1, UNI-1 y certificados de independencia.
 
 ## v0.5
-- ROOT-TRUST-001 completado a nivel de modelo.
-- Piso Constitucional de Seguridad.
-- BTR-8 candidato.
-- Rotación y recuperación de claves.
-- GitHub se define como persistencia, no autoridad.
+- ROOT-TRUST-001, Piso Constitucional de Seguridad y BTR-8 candidato.
 
 ## v0.4
-- Repositorio público y continuidad persistente.
+- Repositorio público, CANON, STATE y continuidad.
 
 ## v0.3
-- Constitución Cero y roadmap coste cero.
+- Constitución Cero y coste cero.
 
 ## v0.2
 - HEBRA ZERO / Núcleo Cristal / ICC-0.
