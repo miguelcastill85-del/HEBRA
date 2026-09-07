@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "max_depth": 10,
+  "attack_types": [
+    "submit_untrusted",
+    "forge_attestation",
+    "inject_policy_as_data",
+    "prompt_injection",
+    "duplicate_sybil_record"
+  ],
+  "states_explored": 66,
+  "transitions_checked": 275,
+  "trusted_root": "3a8401e3e01df1857c11d19f4cdfebfa9c837a901439be7b02c433d9119cd98f",
+  "property": "Every modeled unauthorized transition preserves trusted_root exactly."
+}

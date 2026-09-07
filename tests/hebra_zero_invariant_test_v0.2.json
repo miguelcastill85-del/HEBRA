@@ -1,0 +1,14 @@
+{
+  "crypto_ed25519_available": true,
+  "policy_hash": "71c9ab623ab9e5544be8fad1dea4350ba292c7b0d273db90cdc664b900b50958",
+  "legitimate_promoted_claim": "4066c7107bd6b3738aeb5a39c2a1cf3ae6b4712bf4780ba99c87f26a6147f154",
+  "trusted_root_before_attacks": "6672ca0569c9edf2cfbcdf42ccfd21accbec8de15241239b0e3364d475f2a4cd",
+  "trusted_root_after_10000_untrusted_records": "6672ca0569c9edf2cfbcdf42ccfd21accbec8de15241239b0e3364d475f2a4cd",
+  "trusted_root_after_2000_forged_attestations": "6672ca0569c9edf2cfbcdf42ccfd21accbec8de15241239b0e3364d475f2a4cd",
+  "trusted_root_after_malicious_policy_as_data": "6672ca0569c9edf2cfbcdf42ccfd21accbec8de15241239b0e3364d475f2a4cd",
+  "invariant_holds": true,
+  "inert_record_count": 10002,
+  "attestation_count": 2004,
+  "promoted_count": 1,
+  "note": "This proves the implemented property for these attack classes: untrusted inputs have zero effect on trusted root. It does not prove truth of external claims or security if authorized trust roots are all compromised."
+}

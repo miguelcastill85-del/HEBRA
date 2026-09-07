@@ -1,0 +1,114 @@
+{
+  "protocol_version": "0.1",
+  "record_id": "heb:studyhabit.demo.0001",
+  "record_type": "resolution_result",
+  "lifecycle": {
+    "status": "completed",
+    "created_at": "2026-09-07T03:15:00Z",
+    "preregistered_at": "2026-09-07T03:20:00Z",
+    "completed_at": "2026-10-07T03:20:00Z"
+  },
+  "problem": {
+    "domain": "learning",
+    "statement": "Difficulty maintaining a daily English-study routine.",
+    "target": "Study English at least five days per week.",
+    "baseline": "One to two study sessions per week.",
+    "context_features": [
+      {
+        "name": "daily_time_available_minutes",
+        "value": 15,
+        "sensitivity": "low"
+      },
+      {
+        "name": "prior_long_plan_abandonment",
+        "value": true,
+        "sensitivity": "low"
+      }
+    ]
+  },
+  "intervention": {
+    "name": "Seven-minute post-breakfast study",
+    "description": "Study English for seven minutes immediately after breakfast.",
+    "dose": "7 minutes/day, target 7 days/week",
+    "duration_days": 30,
+    "comparison": "Baseline behavior"
+  },
+  "preregistration": {
+    "primary_outcome": "Study days per week",
+    "success_rule": "At least 5 study days/week in at least 3 of 4 measured weeks.",
+    "analysis_plan": "Compute weekly adherence; evaluate the preregistered success rule without redefining the endpoint.",
+    "stop_rules": [
+      "Stop if self-rated stress is >=8/10 for three consecutive days."
+    ],
+    "locked_fields": [
+      "/problem/target",
+      "/intervention",
+      "/preregistration/primary_outcome",
+      "/preregistration/success_rule",
+      "/preregistration/analysis_plan",
+      "/preregistration/stop_rules"
+    ]
+  },
+  "outcomes": {
+    "primary": {
+      "metric": "weeks_meeting_5_day_threshold",
+      "value": 3,
+      "unit": "weeks",
+      "success": true
+    },
+    "secondary": [
+      {
+        "metric": "mean_minutes_per_study_day",
+        "value": 8.1,
+        "unit": "minutes"
+      }
+    ],
+    "adverse_events": [],
+    "completion": "completed"
+  },
+  "evidence": {
+    "tier": "H2",
+    "verification": [
+      {
+        "type": "platform_event",
+        "status": "partially_verified",
+        "source_commitment": null
+      }
+    ],
+    "independence": "same_actor",
+    "conflicts_of_interest": [],
+    "quality_flags": [
+      "insufficient_sample"
+    ]
+  },
+  "safety": {
+    "risk_band": "R0",
+    "automated_recommendation_allowed": true,
+    "reason": "Low-risk learning habit intervention.",
+    "human_review_required": false
+  },
+  "privacy": {
+    "raw_data_location": "local_only",
+    "sharing_level": "deidentified_record",
+    "retention_days": 365,
+    "dp_budget_epsilon": null,
+    "dp_delta": null
+  },
+  "provenance": {
+    "agent_type": "mixed",
+    "derived_from": [],
+    "software": [
+      {
+        "name": "HEBRA reference client",
+        "version": "0.1.0"
+      }
+    ]
+  },
+  "integrity": {
+    "canonicalization": "JCS-or-equivalent-v0.1",
+    "hash_algorithm": "SHA-256",
+    "commitment": "26e0b410ce8a69005b94c493dbd6c47a0cdcef9b01f45d6227c773acc639c922",
+    "log_status": "not_submitted",
+    "log_receipt": null
+  }
+}

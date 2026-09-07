@@ -1,0 +1,77 @@
+{
+  "query_context": {
+    "daily_time_available_minutes": {
+      "value": 15,
+      "weight": 2.0,
+      "scale": 30
+    },
+    "prior_long_plan_abandonment": {
+      "value": true,
+      "weight": 1.5
+    },
+    "works_full_time": {
+      "value": true,
+      "weight": 1.0
+    }
+  },
+  "results": {
+    "A_7min": {
+      "status": "ELIGIBLE",
+      "reason": null,
+      "evidence_vector": {
+        "accepted_records": 6,
+        "effective_evidence": 2.3147,
+        "mean_transferability": 0.9065,
+        "posterior_success_mean": 0.6679,
+        "approx_95pct_lower_bound": 0.2675,
+        "weighted_adverse_rate": 0.0,
+        "weighted_contradiction_rate": 0.187,
+        "severe_adverse_events": 0
+      },
+      "quarantined": []
+    },
+    "B_30min": {
+      "status": "INSUFFICIENT",
+      "reason": "effective_evidence_too_low",
+      "evidence_vector": {
+        "accepted_records": 2,
+        "effective_evidence": 0.6926,
+        "mean_transferability": 0.7426,
+        "posterior_success_mean": 0.3714,
+        "approx_95pct_lower_bound": 0.0,
+        "weighted_adverse_rate": 0.0,
+        "weighted_contradiction_rate": 0.0,
+        "severe_adverse_events": 0
+      },
+      "quarantined": []
+    },
+    "C_10min_reminder": {
+      "status": "INSUFFICIENT",
+      "reason": "effective_evidence_too_low",
+      "evidence_vector": {
+        "accepted_records": 2,
+        "effective_evidence": 0.573,
+        "mean_transferability": 0.9644,
+        "posterior_success_mean": 0.6113,
+        "approx_95pct_lower_bound": 0.1059,
+        "weighted_adverse_rate": 0.0,
+        "weighted_contradiction_rate": 0.0,
+        "severe_adverse_events": 0
+      },
+      "quarantined": [
+        {
+          "record_id": "heb:sim.c_10min_reminder.001",
+          "reason": "quarantine_integrity"
+        },
+        {
+          "record_id": "heb:sim.c_10min_reminder.002",
+          "reason": "quarantine_integrity"
+        }
+      ]
+    }
+  },
+  "pareto_frontier": [
+    "A_7min"
+  ],
+  "interpretation": "The engine does not choose by raw success count. Suspicious records are quarantined, low-transferability evidence is discounted, contradictions stay visible, and the result is a multidimensional evidence vector."
+}
