@@ -1,0 +1,26 @@
+{
+  "project": "HEBRA",
+  "model_version": "0.6",
+  "concept": "effective_BTR",
+  "plain_rule": "Known shared compromise roots collapse affected signers into the same effective failure domain.",
+  "results": {
+    "12_accounts_but_3_orgs": {
+      "effective_minimum_causes": 2,
+      "example_minimum_cut": ["ORG-A", "ORG-B"]
+    },
+    "shared_signing_root": {
+      "effective_minimum_causes": 1,
+      "example_minimum_cut": ["SHARED-SIGNING-ROOT"]
+    },
+    "12_distinct_control_domains": {
+      "effective_minimum_causes": 8,
+      "example_minimum_cut": ["DOMAIN-P1", "DOMAIN-P2", "DOMAIN-M1", "DOMAIN-M2", "DOMAIN-T1", "DOMAIN-T2", "DOMAIN-S1", "DOMAIN-S2"]
+    },
+    "distinct_people_but_shared_idp_root": {
+      "effective_minimum_causes": 1,
+      "example_minimum_cut": ["SHARED-IDP-ROOT"]
+    }
+  },
+  "key_finding": "Nominal BTR-8 can collapse to 1 or 2 when hidden shared dependencies exist.",
+  "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION"
+}
