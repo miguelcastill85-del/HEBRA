@@ -1,6 +1,6 @@
 {
   "project": "HEBRA",
-  "state_version": "0.7",
+  "state_version": "0.8",
   "status": "active_design_and_verification",
   "purpose": "Ayudar a las personas a resolver problemas de forma segura, verificable y reutilizable.",
   "non_negotiable_rules": [
@@ -20,6 +20,9 @@
     "resolver_divergence_means_halt",
     "technical_diversity_must_be_demonstrated",
     "cryptographic_agility_by_epoch",
+    "semantic_changes_require_version_change",
+    "unknown_fields_and_versions_fail_closed",
+    "official_vectors_are_append_only_by_version",
     "plain_language_explanation_before_and_after_major_changes",
     "persistent_versioned_project_state",
     "uncertainty_must_be_explicit"
@@ -29,105 +32,75 @@
     "ICE-0": "No new operational spend until HEBRA generates revenue."
   },
   "candidate_properties": {
-    "BTR-8": {
-      "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION",
-      "minimum_independent_authority_domains": 8
-    },
-    "eBTR": {
-      "rule": "Collapse known shared failure roots before counting authority."
-    },
-    "CMC-2": {
-      "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION",
-      "meaning": "No single modeled catastrophic technical cause is sufficient in the target topology.",
-      "minimum_modeled_catastrophic_technical_causes": 2
-    }
+    "BTR-8": {"status": "MODELED_NOT_PRODUCTION_PROVEN"},
+    "eBTR": {"status": "TOPOLOGY_DEPENDENT"},
+    "CMC-2": {"status": "MODELED_NOT_PRODUCTION_PROVEN"}
   },
-  "common_mode_v0_7": {
-    "canonical_resolvers": {
-      "families_required": 3,
-      "agreement": "unanimous_exact",
-      "on_disagreement": "HALT_DIVERGENCE",
-      "majority_vote_allowed": false
-    },
-    "root_crypto": {
-      "minimum_algorithm_families": 2,
-      "combination_rule": "AND",
-      "algorithm_names": "not_yet_frozen",
-      "migration": "epoch_based"
-    },
-    "technical_independence_dimensions": [
-      "resolver_implementation_family",
-      "language_or_runtime_family",
-      "compiler_or_toolchain_root",
-      "build_provenance_root",
-      "parser_or_canonicalization_family",
-      "crypto_implementation_family",
-      "operating_platform_root_when_deployed"
-    ],
-    "cost_zero_note": "Production hardware diversity is specified but will not be purchased during zero-revenue bootstrap."
-  },
-  "common_mode_model_findings": {
-    "single_resolver_single_crypto": 1,
-    "three_resolvers_single_crypto": 1,
-    "three_resolvers_dual_crypto": 2,
-    "three_resolvers_dual_crypto_with_universal_shared_runtime": 1
-  },
-  "cross_check_test_findings": {
-    "all_agree_valid": "PROMOTION_ELIGIBLE",
-    "one_wrong_root": "HALT_DIVERGENCE",
-    "one_false_accept": "HALT_DIVERGENCE",
-    "all_agree_reject": "NO_PROMOTION",
-    "shared_dependency_detected": "HALT_DEPENDENCY",
-    "root_crypto_incomplete": "HALT_CRYPTO"
+  "spec_common_v0_8": {
+    "executable_spec": "tests/executable_spec_core_v0.8.py",
+    "candidate_implementation": "tests/candidate_table_resolver_v0.8.py",
+    "golden_vectors": 4,
+    "negative_vectors": 10,
+    "total_vectors": 14,
+    "candidate_vs_oracle_mismatches": 0,
+    "intentional_bug_mismatches": 2,
+    "metamorphic_properties_tested": 5,
+    "metamorphic_properties_passed": 5,
+    "unknown_field_policy": "REJECT",
+    "unknown_version_policy": "REJECT",
+    "validation_order_is_semantic": true
   },
   "completed_milestones": [
     "Z0-specification-and-adversarial-prototypes",
     "Z1-public-repository-bootstrap-complete",
     "ROOT-TRUST-001-structural-model-complete",
     "SYSTEMIC-RISK-001-known-dependency-model-complete",
-    "COMMON-MODE-001-structural-model-complete"
+    "COMMON-MODE-001-structural-model-complete",
+    "SPEC-COMMON-001-executable-spec-prototype-complete"
   ],
-  "artifacts_v0_7": [
-    "security/COMMON_MODE_RESILIENCE_v0.7.md",
-    "security/CRYPTO_AGILITY_v0.7.md",
-    "protocol/CROSS_CHECK_PROTOCOL_v0.7.md",
-    "docs/COMMON_MODE_SIMPLE_v0.7.md",
-    "tests/common_mode_model_v0.7.py",
-    "tests/common_mode_results_v0.7.json",
-    "tests/cross_check_reference_v0.7.py",
-    "tests/cross_check_results_v0.7.json"
+  "artifacts_v0_8": [
+    "protocol/SPEC_CHANGE_RULES_v0.8.md",
+    "docs/SPEC_COMMON_SIMPLE_v0.8.md",
+    "tests/executable_spec_core_v0.8.py",
+    "tests/candidate_table_resolver_v0.8.py",
+    "tests/golden_vectors_v0.8.json",
+    "tests/negative_vectors_v0.8.json",
+    "tests/differential_test_harness_v0.8.py",
+    "tests/spec_test_results_v0.8.json"
   ],
   "known_limitations": [
-    "Three independent implementations may still share the same specification error.",
-    "CMC-2 is a structural model result, not a production guarantee.",
-    "The concrete root cryptographic suites are not yet frozen.",
-    "Universal hardware or compiler vulnerabilities remain possible.",
-    "Current GitHub main branch was observed unprotected.",
-    "Current checkpoints are not yet protected by the future root dual-suite mechanism."
+    "The two prototype implementations were created in the same development context and are not truly independent production implementations.",
+    "Fourteen vectors do not exhaust the input space.",
+    "Prototype canonicalization is not yet the final production RFC 8785 implementation.",
+    "Specification design bugs can still survive if tests do not cover them.",
+    "Current GitHub main branch remains observed unprotected.",
+    "Root dual-suite checkpointing is specified but not deployed."
   ],
   "pending_risks": [
-    {
-      "id": "PERSISTENCE-001",
-      "issue": "GitHub main branch observed unprotected.",
-      "status": "open"
-    },
-    {
-      "id": "SPEC-COMMON-001",
-      "issue": "Independent implementations can reproduce the same incorrect interpretation of the specification.",
-      "status": "next"
-    }
+    {"id": "PERSISTENCE-001", "status": "open", "issue": "GitHub main branch observed unprotected."},
+    {"id": "CANONICALIZATION-001", "status": "open", "issue": "Production canonicalization must be frozen and cross-language tested."}
   ],
   "next_recommended_step": {
-    "id": "SPEC-COMMON-001",
-    "goal": "Hacer que la especificación sea comprobable y crear pruebas que descubran errores de interpretación compartidos entre implementaciones.",
+    "id": "LOCAL-PILOT-001",
+    "goal": "Construir un cliente local-first de coste cero que permita crear un Contrato de Resolución de bajo riesgo, cerrarlo con un resultado y exportar una Huella HEBRA sin servidor.",
+    "constraints": [
+      "gasto_nuevo_0",
+      "local_first",
+      "no_account_required",
+      "no_sensitive_data_required",
+      "low_risk_domains_only",
+      "plain_language_ui",
+      "exportable_json"
+    ],
     "deliverables": [
-      "executable_specification_core",
-      "golden_vectors",
-      "negative_vectors",
-      "metamorphic_properties",
-      "differential_test_harness",
-      "spec_change_rules",
-      "simple_language_explanation",
+      "single_file_local_web_app",
+      "resolution_contract_wizard",
+      "local_storage_optional",
+      "export_import_json",
+      "success_rule_lock",
+      "result_closure",
+      "simple_help",
+      "zero_cost_run_instructions",
       "machine_readable_state_update"
     ]
   },
@@ -138,19 +111,9 @@
     "main_branch_protected_observed": false
   },
   "communication_rule": {
-    "before_major_action": [
-      "what I will do",
-      "why it matters",
-      "main risk"
-    ],
-    "after_major_action": [
-      "what I did",
-      "result",
-      "what changed",
-      "what remains uncertain",
-      "next step"
-    ],
+    "before_major_action": ["what I will do", "why it matters", "main risk"],
+    "after_major_action": ["what I did", "result", "what changed", "what remains uncertain", "next step"],
     "language": "plain Spanish, child-understandable when possible"
   },
-  "state_sha256": "8edaf2d39ce218aac2b24f2de5a291b54d9bae0d8dbbbf84afec57c309655416"
+  "state_sha256": "4ad6e61f796c95fb41b3b81a3dd6012cd1861ac5a0a110979de60a26417f8e41"
 }
