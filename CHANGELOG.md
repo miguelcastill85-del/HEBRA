@@ -1,31 +1,36 @@
 # CHANGELOG
 
+## v0.9
+- Se completa LOCAL-PILOT-001: primera utilidad real local-first.
+- Se crea una aplicación de un solo archivo HTML, sin backend.
+- Se añaden Contrato de Resolución, regla numérica preregistrada, bloqueo de sesión y cierre de resultado.
+- Se añaden exportación e importación JSON.
+- Guardado local está apagado por defecto.
+- CSP bloquea conexiones externas.
+- No hay analítica, anuncios ni APIs.
+- Al importar se recalculan las huellas de contrato y resultado.
+- Se documenta que SHA-256 local no demuestra autoría.
+- Pruebas estáticas y sintaxis JavaScript pasan.
+- Prueba DOM de navegador simulada no ejecutada porque jsdom no está disponible.
+- Próximo objetivo: BROWSER-E2E-001.
+
 ## v0.8
-- Se completa SPEC-COMMON-001 a nivel de prototipo.
-- Se crea una especificación ejecutable determinista para la puerta de promoción.
-- Se define el orden de validación como parte de la semántica.
-- Campos y versiones desconocidos se rechazan.
-- Se crean 4 golden vectors y 10 negative vectors.
-- Dos implementaciones prototipo coinciden en los 14 vectores.
-- Se prueban 5 propiedades metamórficas; las 5 pasan.
-- Un bug intencional es detectado en 2 vectores por el differential harness.
-- Se crean reglas de cambio semántico: cambiar significado exige nueva versión.
-- Próximo objetivo: LOCAL-PILOT-001, primera utilidad local de coste cero.
+- Especificación ejecutable, 14 vectores, differential testing y reglas de cambio semántico.
 
 ## v0.7
-- COMMON-MODE-001, CMC-2, tres resolvers, dual crypto y divergencia = HALT.
+- CMC-2, tres resolvers, dual crypto y divergencia = HALT.
 
 ## v0.6
-- eBTR, DCR-1, UNI-1 y certificados de independencia.
+- eBTR, DCR-1 y UNI-1.
 
 ## v0.5
-- ROOT-TRUST-001 y BTR-8 candidato.
+- BTR-8 y raíz de confianza.
 
 ## v0.4
-- Persistencia GitHub, CANON y STATE.
+- Persistencia GitHub.
 
 ## v0.3
-- Constitución Cero y coste cero.
+- Constitución Cero.
 
 ## v0.2
 - HEBRA ZERO / ICC-0.
