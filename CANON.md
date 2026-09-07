@@ -1,10 +1,11 @@
-# HEBRA CANON v0.4
+# HEBRA CANON v0.5
 ## Fuente oficial del proyecto
 
 Este archivo define qué es HEBRA, qué reglas no se deben olvidar y cómo continuar el trabajo.
 
 ## 1. Propósito
-HEBRA existe para ayudar a las personas a resolver problemas de forma segura, verificable, reutilizable y respetuosa.
+HEBRA existe para ayudar a las personas a resolver problemas de forma segura, verificable,
+reutilizable y respetuosa.
 
 ## 2. Principios que no se pueden saltar
 
@@ -15,65 +16,64 @@ El beneficio humano está por encima del crecimiento, el dinero y el uso.
 No se añade gasto operativo nuevo hasta que HEBRA genere ingresos propios.
 
 ### P3 — No vender a la persona
-No vender datos personales.
-No usar datos sensibles para publicidad.
-No permitir que el dinero compre peso de evidencia.
+No vender datos personales. No usar datos sensibles para publicidad.
+El dinero no compra peso de evidencia.
 
 ### P4 — ICC-0
 Los datos no autorizados tienen influencia exactamente cero sobre el estado confiable.
 
 ### P5 — Núcleo Cristal
-Los datos pueden entrar al sistema, pero no pueden modificar el conocimiento confiable por sí solos.
-La IA puede proponer, pero no puede aprobar ni promover.
+Los datos pueden entrar, pero no pueden modificar por sí solos el conocimiento confiable.
+La IA puede proponer, pero no aprobar ni promover.
 
 ### P6 — Sin aprendizaje online directo
-Los datos de usuario no cambian automáticamente:
-- pesos del modelo;
-- políticas;
-- reglas;
-- verificadores;
-- claves;
-- umbrales;
-- código;
-- conocimiento confiable.
+Inputs de usuario no cambian automáticamente modelos, políticas, reglas, verificadores,
+claves, umbrales, código ni conocimiento confiable.
 
-### P7 — Todo cambio debe dejar rastro
-Las correcciones no borran el pasado.
-Se crea una nueva versión enlazada a la anterior.
+### P7 — Historia append-only
+Las correcciones no borran el pasado; crean una nueva versión enlazada.
 
 ### P8 — Determinismo
-Con los mismos datos promovidos, la misma política y la misma versión del resolver,
-dos instalaciones deben producir el mismo estado confiable y el mismo hash.
+Con los mismos datos promovidos, política y resolver, se debe obtener el mismo estado confiable.
 
 ### P9 — Durabilidad
-La verdad del proyecto no debe depender de la memoria de una persona o de una conversación.
-Debe vivir en archivos versionados, verificables y exportables.
+El proyecto vive en archivos versionados, verificables y exportables; no en recuerdos.
 
 ### P10 — Explicación simple obligatoria
-Antes y después de todo cambio importante se debe explicar:
-1. qué vamos a hacer;
-2. por qué;
-3. qué puede salir mal;
-4. qué hicimos;
-5. qué cambió;
-6. qué sigue.
-
-Debe explicarse sin tecnicismos innecesarios, con lenguaje que pueda entender un niño.
+Antes y después de un cambio importante se explica qué, por qué, riesgo, resultado y siguiente paso.
 
 ### P11 — Estado persistente
-Siempre debe existir un archivo de estado que diga:
-- versión actual;
-- decisiones vigentes;
-- artefactos existentes;
-- pruebas realizadas;
-- problemas abiertos;
-- siguiente paso recomendado.
+Siempre debe existir `STATE.json` con versión, decisiones, pruebas, problemas y siguiente paso.
 
 ### P12 — No fingir certeza
-Si algo no está demostrado, debe decirse claramente.
-HEBRA puede responder “no sabemos todavía”.
+Si algo no está demostrado, HEBRA debe decir “no sabemos todavía”.
 
-## 3. Arquitectura conceptual
+### P13 — Persistencia no es autoridad
+GitHub, servidores, nubes y copias guardan HEBRA, pero ninguno de ellos decide por sí solo qué es verdad.
+
+### P14 — Piso Constitucional de Seguridad
+Las políticas normales pueden aumentar la seguridad, pero no reducir los mínimos del Núcleo Cristal.
+Reducir esos mínimos exige una nueva versión mayor aprobada por la puerta de versión.
+
+### P15 — Independencia real
+Dos cuentas no cuentan como dos controles independientes si dependen de la misma persona,
+organización, credencial raíz, secreto o servicio de firma.
+
+## 3. Invariantes y propiedades
+
+### ICC-0 — Invariante Cero de Contaminación
+Una entrada que no cumple la promoción no cambia el estado confiable.
+
+### ICE-0 — Invariante de Coste Económico Cero
+Mientras HEBRA no tenga ingresos propios, el gasto operativo nuevo es 0.
+
+### BTR-8 — Barrera de Toma de Raíz (CANDIDATA)
+En el modelo v0.5, las tres rutas de contaminación estudiadas requieren al menos 8 dominios
+de confianza independientes comprometidos.
+
+Estado: PROBADO EN MODELO / NO DEMOSTRADO EN PRODUCCIÓN.
+
+## 4. Arquitectura conceptual
 
 PERSONA
   ↓
@@ -81,62 +81,32 @@ MAR INERTE
   ↓
 VERIFICADORES SEPARADOS
   ↓
-AIRLOCK / PUERTA DE PROMOCIÓN
+PUERTA DE PROMOCIÓN
   ↓
-NÚCLEO CRISTAL
+NÚCLEO CRISTAL + PISO DE SEGURIDAD
   ↓
 SNAPSHOT DETERMINISTA
   ↓
-RECOMENDACIONES CON PRUEBA
+RECOMENDACIÓN CON PRUEBA
 
-## 4. Invariantes actuales
-
-### ICC-0 — Invariante Cero de Contaminación
-Si una entrada no cumple las reglas de promoción, el estado confiable no cambia.
-
-### ICE-0 — Invariante de Coste Económico Cero
-Mientras HEBRA no tenga ingresos propios, el gasto operativo nuevo debe ser 0.
-
-## 5. Política de continuidad
-En una nueva sesión:
-1. leer este CANON;
+## 5. Continuidad
+Al iniciar una sesión:
+1. leer `CANON.md`;
 2. leer `STATE.json`;
-3. verificar la versión;
-4. explicar al usuario en lenguaje simple dónde quedó el proyecto;
-5. continuar desde el siguiente paso registrado;
-6. actualizar CANON/STATE si se toma una decisión nueva.
+3. explicar dónde quedó el proyecto;
+4. continuar desde `next_recommended_step`;
+5. registrar cualquier cambio importante.
 
-## 6. Regla de autoridad
-Si una conversación contradice este archivo:
-- no se sobrescribe silenciosamente;
-- se registra una propuesta de cambio;
-- se crea una nueva versión;
-- se explica el motivo.
+## 6. Transparencia
+No se ocultan fallos, vulnerabilidades, pruebas fallidas, supuestos ni limitaciones.
 
-## 7. Regla de transparencia para el usuario
-El usuario debe estar al tanto de todos los movimientos importantes.
-No se deben ocultar:
-- cambios de arquitectura;
-- decisiones;
-- fallos;
-- pruebas fallidas;
-- vulnerabilidades descubiertas;
-- supuestos;
-- limitaciones.
+## 7. Estado resumido
+ROOT-TRUST-001 está completado a nivel de modelo:
+- árbol de amenazas de raíz;
+- cálculo de corte mínimo;
+- arquitectura BTR-8 candidata;
+- protocolo de rotación y recuperación;
+- explicación simple.
 
-## 8. Estado actual resumido
-HEBRA ya tiene:
-- Protocolo v0.1;
-- modelo de amenazas;
-- motor de referencia;
-- simulación adversarial;
-- HEBRA ZERO / Núcleo Cristal;
-- ICC-0;
-- Constitución Cero;
-- Roadmap Coste Cero;
-- modelo acotado de ICC-0;
-- primera especificación TLA+.
-
-Próximo gran objetivo:
-proteger la raíz de confianza y calcular exactamente qué conjunto mínimo de componentes tendría que
-comprometer un atacante para romper ICC-0.
+Siguiente objetivo:
+estudiar fallos compartidos que podrían hacer que varias partes “independientes” caigan juntas.
