@@ -1,54 +1,54 @@
 {
   "project": "HEBRA",
-  "state_version": "0.8",
-  "status": "active_design_and_verification",
-  "purpose": "Ayudar a las personas a resolver problemas de forma segura, verificable y reutilizable.",
-  "non_negotiable_rules": [
-    "human_benefit_first",
-    "zero_new_operational_spend_until_project_revenue",
-    "no_sale_of_personal_data",
-    "money_cannot_buy_evidence_weight",
-    "icc0_untrusted_inputs_have_zero_trusted_influence",
-    "no_online_learning_directly_from_user_inputs",
-    "ai_may_propose_but_cannot_promote",
-    "append_only_history",
-    "deterministic_trusted_state",
-    "persistence_is_not_trust_authority",
-    "constitutional_safety_floor_cannot_be_weakened_by_ordinary_policy",
-    "dependency_collapse_rule_DCR1",
-    "unknown_is_not_independent_UNI1",
-    "resolver_divergence_means_halt",
-    "technical_diversity_must_be_demonstrated",
-    "cryptographic_agility_by_epoch",
-    "semantic_changes_require_version_change",
-    "unknown_fields_and_versions_fail_closed",
-    "official_vectors_are_append_only_by_version",
-    "plain_language_explanation_before_and_after_major_changes",
-    "persistent_versioned_project_state",
-    "uncertainty_must_be_explicit"
-  ],
+  "state_version": "0.9",
+  "status": "first_local_utility_ready_for_browser_pilot",
+  "purpose": "Ayudar a las personas a aprender de intentos reales de forma segura y reutilizable.",
   "current_invariants": {
     "ICC-0": "Unauthorized inputs cannot change trusted state.",
     "ICE-0": "No new operational spend until HEBRA generates revenue."
   },
   "candidate_properties": {
-    "BTR-8": {"status": "MODELED_NOT_PRODUCTION_PROVEN"},
-    "eBTR": {"status": "TOPOLOGY_DEPENDENT"},
-    "CMC-2": {"status": "MODELED_NOT_PRODUCTION_PROVEN"}
+    "BTR-8": "MODELED_NOT_PRODUCTION_PROVEN",
+    "eBTR": "TOPOLOGY_DEPENDENT",
+    "CMC-2": "MODELED_NOT_PRODUCTION_PROVEN"
   },
-  "spec_common_v0_8": {
-    "executable_spec": "tests/executable_spec_core_v0.8.py",
-    "candidate_implementation": "tests/candidate_table_resolver_v0.8.py",
-    "golden_vectors": 4,
-    "negative_vectors": 10,
-    "total_vectors": 14,
-    "candidate_vs_oracle_mismatches": 0,
-    "intentional_bug_mismatches": 2,
-    "metamorphic_properties_tested": 5,
-    "metamorphic_properties_passed": 5,
-    "unknown_field_policy": "REJECT",
-    "unknown_version_policy": "REJECT",
-    "validation_order_is_semantic": true
+  "local_pilot_v0_9": {
+    "artifact": "app/index.html",
+    "architecture": "single_file_local_first",
+    "server_required": false,
+    "account_required": false,
+    "external_network_required": false,
+    "local_storage_default": false,
+    "allowed_domains": ["learning", "organization", "low_risk_habit"],
+    "blocked_scope": ["health", "medication", "finance", "law", "emergency", "physical_safety", "self_harm"],
+    "features": [
+      "resolution_contract_wizard",
+      "numeric_success_rule",
+      "session_field_lock",
+      "sha256_contract_commitment",
+      "result_closure",
+      "success_evaluation_against_original_rule",
+      "sha256_result_commitment",
+      "json_export_import",
+      "import_hash_recalculation",
+      "optional_local_storage"
+    ],
+    "privacy_controls": [
+      "content_security_policy_connect_src_none",
+      "no_fetch",
+      "no_xmlhttprequest",
+      "no_websocket",
+      "no_external_fonts",
+      "no_analytics",
+      "no_ads"
+    ],
+    "integrity_limit": "Local hashes are not identity/authenticity signatures."
+  },
+  "tests_v0_9": {
+    "static_privacy_function_checks": "PASS",
+    "javascript_syntax": "PASS",
+    "browser_dom_integration": "NOT_RUN_JSDOM_UNAVAILABLE",
+    "real_browser_end_to_end": "PENDING"
   },
   "completed_milestones": [
     "Z0-specification-and-adversarial-prototypes",
@@ -56,52 +56,33 @@
     "ROOT-TRUST-001-structural-model-complete",
     "SYSTEMIC-RISK-001-known-dependency-model-complete",
     "COMMON-MODE-001-structural-model-complete",
-    "SPEC-COMMON-001-executable-spec-prototype-complete"
-  ],
-  "artifacts_v0_8": [
-    "protocol/SPEC_CHANGE_RULES_v0.8.md",
-    "docs/SPEC_COMMON_SIMPLE_v0.8.md",
-    "tests/executable_spec_core_v0.8.py",
-    "tests/candidate_table_resolver_v0.8.py",
-    "tests/golden_vectors_v0.8.json",
-    "tests/negative_vectors_v0.8.json",
-    "tests/differential_test_harness_v0.8.py",
-    "tests/spec_test_results_v0.8.json"
+    "SPEC-COMMON-001-executable-spec-prototype-complete",
+    "LOCAL-PILOT-001-first-local-utility-built"
   ],
   "known_limitations": [
-    "The two prototype implementations were created in the same development context and are not truly independent production implementations.",
-    "Fourteen vectors do not exhaust the input space.",
-    "Prototype canonicalization is not yet the final production RFC 8785 implementation.",
-    "Specification design bugs can still survive if tests do not cover them.",
-    "Current GitHub main branch remains observed unprotected.",
-    "Root dual-suite checkpointing is specified but not deployed."
+    "Browser DOM integration has not yet been executed in this environment.",
+    "Session lock can be bypassed by someone who controls browser developer tools; production immutability requires external signed commitments.",
+    "SHA-256 commitments are not proof of author identity.",
+    "Safety keyword filter is only a warning aid and is not a complete risk classifier.",
+    "Pilot uses numeric success rules only.",
+    "No global evidence promotion exists in v0.9."
   ],
   "pending_risks": [
     {"id": "PERSISTENCE-001", "status": "open", "issue": "GitHub main branch observed unprotected."},
-    {"id": "CANONICALIZATION-001", "status": "open", "issue": "Production canonicalization must be frozen and cross-language tested."}
+    {"id": "CANONICALIZATION-001", "status": "open", "issue": "Production canonicalization must be frozen and cross-language tested."},
+    {"id": "BROWSER-E2E-001", "status": "next", "issue": "Local pilot needs real-browser end-to-end validation."}
   ],
   "next_recommended_step": {
-    "id": "LOCAL-PILOT-001",
-    "goal": "Construir un cliente local-first de coste cero que permita crear un Contrato de Resolución de bajo riesgo, cerrarlo con un resultado y exportar una Huella HEBRA sin servidor.",
-    "constraints": [
-      "gasto_nuevo_0",
-      "local_first",
-      "no_account_required",
-      "no_sensitive_data_required",
-      "low_risk_domains_only",
-      "plain_language_ui",
-      "exportable_json"
-    ],
-    "deliverables": [
-      "single_file_local_web_app",
-      "resolution_contract_wizard",
-      "local_storage_optional",
-      "export_import_json",
-      "success_rule_lock",
-      "result_closure",
-      "simple_help",
-      "zero_cost_run_instructions",
-      "machine_readable_state_update"
+    "id": "BROWSER-E2E-001",
+    "goal": "Abrir HEBRA Local en un navegador real, crear un contrato de bajo riesgo, bloquearlo, cerrarlo, exportarlo e importarlo de nuevo verificando las huellas.",
+    "success_criteria": [
+      "page_opens_without_network_dependency",
+      "contract_locks",
+      "export_downloads_json",
+      "result_closes",
+      "success_rule_is_not_editable_after_lock",
+      "import_verifies_hashes",
+      "tampered_file_is_rejected"
     ]
   },
   "github": {
@@ -110,10 +91,11 @@
     "role": "Primary durable versioned memory, not canonical trust authority.",
     "main_branch_protected_observed": false
   },
+  "cost": {"new_operational_spend": 0, "status": "ICE-0 maintained"},
   "communication_rule": {
+    "language": "plain Spanish, child-understandable when possible",
     "before_major_action": ["what I will do", "why it matters", "main risk"],
-    "after_major_action": ["what I did", "result", "what changed", "what remains uncertain", "next step"],
-    "language": "plain Spanish, child-understandable when possible"
+    "after_major_action": ["what I did", "result", "what changed", "what remains uncertain", "next step"]
   },
-  "state_sha256": "4ad6e61f796c95fb41b3b81a3dd6012cd1861ac5a0a110979de60a26417f8e41"
+  "state_sha256": "97df2c49700e0ad7074c0f872017bb8830099fa43f63846d85adc43cd558e497"
 }
