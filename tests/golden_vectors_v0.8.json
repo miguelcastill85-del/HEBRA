@@ -1,0 +1,104 @@
+[
+  {
+    "name": "valid_baseline",
+    "event": {
+      "protocol_version": "0.8",
+      "previous_root": "1111111111111111111111111111111111111111111111111111111111111111",
+      "epoch": 8,
+      "candidate": {"id": "heb:vector:valid:001", "payload_hash": "bbd0dda770632246f4aa834c6c18c15606e7567c57e308cf51b2226d2d88dc05"},
+      "approvals": [
+        {"chamber": "PROV", "signer_id": "P1", "effective_domain": "DP1"},
+        {"chamber": "PROV", "signer_id": "P2", "effective_domain": "DP2"},
+        {"chamber": "MEAS", "signer_id": "M1", "effective_domain": "DM1"},
+        {"chamber": "MEAS", "signer_id": "M2", "effective_domain": "DM2"},
+        {"chamber": "METH", "signer_id": "T1", "effective_domain": "DT1"},
+        {"chamber": "METH", "signer_id": "T2", "effective_domain": "DT2"},
+        {"chamber": "SAFE", "signer_id": "S1", "effective_domain": "DS1"},
+        {"chamber": "SAFE", "signer_id": "S2", "effective_domain": "DS2"}
+      ],
+      "root_crypto": {"suite_a_valid": true, "suite_b_valid": true}
+    },
+    "expected": {
+      "verdict": "ACCEPT", "reason_code": "ACCEPT",
+      "transition_hash": "e4e463597ee6391e362642d106e7d13dd50734cb0b05b9619f5c36debbe15708",
+      "next_trusted_root": "8cd18a385f4f8664e98bd7e3ed1448acd29f5013b53e85f2d0bde8214618edb9"
+    }
+  },
+  {
+    "name": "valid_reordered_approvals",
+    "event": {
+      "protocol_version": "0.8",
+      "previous_root": "1111111111111111111111111111111111111111111111111111111111111111",
+      "epoch": 8,
+      "candidate": {"id": "heb:vector:valid:001", "payload_hash": "bbd0dda770632246f4aa834c6c18c15606e7567c57e308cf51b2226d2d88dc05"},
+      "approvals": [
+        {"chamber": "SAFE", "signer_id": "S2", "effective_domain": "DS2"},
+        {"chamber": "SAFE", "signer_id": "S1", "effective_domain": "DS1"},
+        {"chamber": "METH", "signer_id": "T2", "effective_domain": "DT2"},
+        {"chamber": "METH", "signer_id": "T1", "effective_domain": "DT1"},
+        {"chamber": "MEAS", "signer_id": "M2", "effective_domain": "DM2"},
+        {"chamber": "MEAS", "signer_id": "M1", "effective_domain": "DM1"},
+        {"chamber": "PROV", "signer_id": "P2", "effective_domain": "DP2"},
+        {"chamber": "PROV", "signer_id": "P1", "effective_domain": "DP1"}
+      ],
+      "root_crypto": {"suite_a_valid": true, "suite_b_valid": true}
+    },
+    "expected": {
+      "verdict": "ACCEPT", "reason_code": "ACCEPT",
+      "transition_hash": "e4e463597ee6391e362642d106e7d13dd50734cb0b05b9619f5c36debbe15708",
+      "next_trusted_root": "8cd18a385f4f8664e98bd7e3ed1448acd29f5013b53e85f2d0bde8214618edb9"
+    }
+  },
+  {
+    "name": "valid_exact_duplicate_ignored",
+    "event": {
+      "protocol_version": "0.8",
+      "previous_root": "1111111111111111111111111111111111111111111111111111111111111111",
+      "epoch": 8,
+      "candidate": {"id": "heb:vector:valid:001", "payload_hash": "bbd0dda770632246f4aa834c6c18c15606e7567c57e308cf51b2226d2d88dc05"},
+      "approvals": [
+        {"chamber": "PROV", "signer_id": "P1", "effective_domain": "DP1"},
+        {"chamber": "PROV", "signer_id": "P2", "effective_domain": "DP2"},
+        {"chamber": "MEAS", "signer_id": "M1", "effective_domain": "DM1"},
+        {"chamber": "MEAS", "signer_id": "M2", "effective_domain": "DM2"},
+        {"chamber": "METH", "signer_id": "T1", "effective_domain": "DT1"},
+        {"chamber": "METH", "signer_id": "T2", "effective_domain": "DT2"},
+        {"chamber": "SAFE", "signer_id": "S1", "effective_domain": "DS1"},
+        {"chamber": "SAFE", "signer_id": "S2", "effective_domain": "DS2"},
+        {"chamber": "PROV", "signer_id": "P1", "effective_domain": "DP1"}
+      ],
+      "root_crypto": {"suite_a_valid": true, "suite_b_valid": true}
+    },
+    "expected": {
+      "verdict": "ACCEPT", "reason_code": "ACCEPT",
+      "transition_hash": "e4e463597ee6391e362642d106e7d13dd50734cb0b05b9619f5c36debbe15708",
+      "next_trusted_root": "8cd18a385f4f8664e98bd7e3ed1448acd29f5013b53e85f2d0bde8214618edb9"
+    }
+  },
+  {
+    "name": "valid_extra_independent_approval",
+    "event": {
+      "protocol_version": "0.8",
+      "previous_root": "1111111111111111111111111111111111111111111111111111111111111111",
+      "epoch": 8,
+      "candidate": {"id": "heb:vector:valid:extra", "payload_hash": "bbd0dda770632246f4aa834c6c18c15606e7567c57e308cf51b2226d2d88dc05"},
+      "approvals": [
+        {"chamber": "PROV", "signer_id": "P1", "effective_domain": "DP1"},
+        {"chamber": "PROV", "signer_id": "P2", "effective_domain": "DP2"},
+        {"chamber": "MEAS", "signer_id": "M1", "effective_domain": "DM1"},
+        {"chamber": "MEAS", "signer_id": "M2", "effective_domain": "DM2"},
+        {"chamber": "METH", "signer_id": "T1", "effective_domain": "DT1"},
+        {"chamber": "METH", "signer_id": "T2", "effective_domain": "DT2"},
+        {"chamber": "SAFE", "signer_id": "S1", "effective_domain": "DS1"},
+        {"chamber": "SAFE", "signer_id": "S2", "effective_domain": "DS2"},
+        {"chamber": "PROV", "signer_id": "P3", "effective_domain": "DP3"}
+      ],
+      "root_crypto": {"suite_a_valid": true, "suite_b_valid": true}
+    },
+    "expected": {
+      "verdict": "ACCEPT", "reason_code": "ACCEPT",
+      "transition_hash": "faccbc7b5be86b2c80e5f0af163cea6a1c018a8eacde9763945d705c74da9d36",
+      "next_trusted_root": "6abd8b674333a36227c8b9a82267a639cf09d7985582b44cfac47f55647d112e"
+    }
+  }
+]
