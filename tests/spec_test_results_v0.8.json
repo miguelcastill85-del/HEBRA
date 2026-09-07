@@ -1,0 +1,18 @@
+{
+  "vector_count": 14,
+  "oracle_expected_mismatches": [],
+  "candidate_vs_oracle_mismatches": [],
+  "deliberately_buggy_mismatches": [
+    "missing_safety_quorum",
+    "duplicate_domain_not_second_domain"
+  ],
+  "metamorphic": {
+    "approval_order_invariant": true,
+    "exact_duplicate_invariant": true,
+    "remove_required_approval_rejects": true,
+    "payload_change_changes_root": true,
+    "unknown_field_rejects": true
+  },
+  "all_candidate_checks_pass": true,
+  "harness_detected_bug": true
+}
