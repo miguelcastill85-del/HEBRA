@@ -1,6 +1,6 @@
 {
   "project": "HEBRA",
-  "state_version": "0.6",
+  "state_version": "0.7",
   "status": "active_design_and_verification",
   "purpose": "Ayudar a las personas a resolver problemas de forma segura, verificable y reutilizable.",
   "non_negotiable_rules": [
@@ -17,6 +17,9 @@
     "constitutional_safety_floor_cannot_be_weakened_by_ordinary_policy",
     "dependency_collapse_rule_DCR1",
     "unknown_is_not_independent_UNI1",
+    "resolver_divergence_means_halt",
+    "technical_diversity_must_be_demonstrated",
+    "cryptographic_agility_by_epoch",
     "plain_language_explanation_before_and_after_major_changes",
     "persistent_versioned_project_state",
     "uncertainty_must_be_explicit"
@@ -27,73 +30,103 @@
   },
   "candidate_properties": {
     "BTR-8": {
-      "type": "structural_nominal",
       "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION",
-      "minimum": 8
+      "minimum_independent_authority_domains": 8
     },
     "eBTR": {
-      "type": "topology_dependent_effective_barrier",
-      "rule": "Collapse known shared failure roots before counting authority.",
-      "production_claim_requirement": "eBTR >= 8"
+      "rule": "Collapse known shared failure roots before counting authority."
+    },
+    "CMC-2": {
+      "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION",
+      "meaning": "No single modeled catastrophic technical cause is sufficient in the target topology.",
+      "minimum_modeled_catastrophic_technical_causes": 2
     }
   },
-  "systemic_risk_v0_6": {
-    "model_findings": {
-      "12_accounts_3_orgs": 2,
-      "shared_signing_root": 1,
-      "12_distinct_control_domains": 8,
-      "shared_identity_root": 1
+  "common_mode_v0_7": {
+    "canonical_resolvers": {
+      "families_required": 3,
+      "agreement": "unanimous_exact",
+      "on_disagreement": "HALT_DIVERGENCE",
+      "majority_vote_allowed": false
     },
-    "independence_certificate_required_fields": [
-      "signer_id",
-      "operator_control_id",
-      "organization_control_id",
-      "key_custody_root_id",
-      "identity_root_id",
-      "signing_service_root_id",
-      "recovery_controller_id",
-      "verifier_implementation_family",
-      "build_provenance_root"
+    "root_crypto": {
+      "minimum_algorithm_families": 2,
+      "combination_rule": "AND",
+      "algorithm_names": "not_yet_frozen",
+      "migration": "epoch_based"
+    },
+    "technical_independence_dimensions": [
+      "resolver_implementation_family",
+      "language_or_runtime_family",
+      "compiler_or_toolchain_root",
+      "build_provenance_root",
+      "parser_or_canonicalization_family",
+      "crypto_implementation_family",
+      "operating_platform_root_when_deployed"
     ],
-    "unknown_dependency_policy": "does_not_establish_independence",
-    "same_effective_domain_across_chambers_allowed": false
+    "cost_zero_note": "Production hardware diversity is specified but will not be purchased during zero-revenue bootstrap."
+  },
+  "common_mode_model_findings": {
+    "single_resolver_single_crypto": 1,
+    "three_resolvers_single_crypto": 1,
+    "three_resolvers_dual_crypto": 2,
+    "three_resolvers_dual_crypto_with_universal_shared_runtime": 1
+  },
+  "cross_check_test_findings": {
+    "all_agree_valid": "PROMOTION_ELIGIBLE",
+    "one_wrong_root": "HALT_DIVERGENCE",
+    "one_false_accept": "HALT_DIVERGENCE",
+    "all_agree_reject": "NO_PROMOTION",
+    "shared_dependency_detected": "HALT_DEPENDENCY",
+    "root_crypto_incomplete": "HALT_CRYPTO"
   },
   "completed_milestones": [
     "Z0-specification-and-adversarial-prototypes",
     "Z1-public-repository-bootstrap-complete",
     "ROOT-TRUST-001-structural-model-complete",
-    "SYSTEMIC-RISK-001-known-dependency-model-complete"
+    "SYSTEMIC-RISK-001-known-dependency-model-complete",
+    "COMMON-MODE-001-structural-model-complete"
   ],
-  "artifacts_v0_6": [
-    "security/SYSTEMIC_INDEPENDENCE_v0.6.md",
-    "docs/SYSTEMIC_RISK_SIMPLE_v0.6.md",
-    "tests/independence_validator_v0.6.py",
-    "tests/systemic_dependency_model_v0.6.py",
-    "tests/systemic_dependency_results_v0.6.json"
+  "artifacts_v0_7": [
+    "security/COMMON_MODE_RESILIENCE_v0.7.md",
+    "security/CRYPTO_AGILITY_v0.7.md",
+    "protocol/CROSS_CHECK_PROTOCOL_v0.7.md",
+    "docs/COMMON_MODE_SIMPLE_v0.7.md",
+    "tests/common_mode_model_v0.7.py",
+    "tests/common_mode_results_v0.7.json",
+    "tests/cross_check_reference_v0.7.py",
+    "tests/cross_check_results_v0.7.json"
   ],
   "known_limitations": [
-    "DCR-1 can collapse known dependencies but cannot discover all hidden dependencies.",
-    "Common-mode software/compiler/cryptographic failures are not yet solved.",
-    "BTR-8 is not yet a production guarantee.",
+    "Three independent implementations may still share the same specification error.",
+    "CMC-2 is a structural model result, not a production guarantee.",
+    "The concrete root cryptographic suites are not yet frozen.",
+    "Universal hardware or compiler vulnerabilities remain possible.",
     "Current GitHub main branch was observed unprotected.",
-    "Current checkpoints are unsigned bootstrap checkpoints."
+    "Current checkpoints are not yet protected by the future root dual-suite mechanism."
   ],
   "pending_risks": [
     {
       "id": "PERSISTENCE-001",
       "issue": "GitHub main branch observed unprotected.",
-      "impact": "History/persistence can be rewritten by sufficiently privileged GitHub access; GitHub is therefore not a trust root.",
       "status": "open"
+    },
+    {
+      "id": "SPEC-COMMON-001",
+      "issue": "Independent implementations can reproduce the same incorrect interpretation of the specification.",
+      "status": "next"
     }
   ],
   "next_recommended_step": {
-    "id": "COMMON-MODE-001",
-    "goal": "Reducir fallos compartidos de software, compiladores, criptografía y otros componentes que podrían afectar varias raíces independientes a la vez.",
+    "id": "SPEC-COMMON-001",
+    "goal": "Hacer que la especificación sea comprobable y crear pruebas que descubran errores de interpretación compartidos entre implementaciones.",
     "deliverables": [
-      "common_mode_dependency_model",
-      "multi_implementation_strategy",
-      "cryptographic_agility_policy",
-      "deterministic_cross_check_protocol",
+      "executable_specification_core",
+      "golden_vectors",
+      "negative_vectors",
+      "metamorphic_properties",
+      "differential_test_harness",
+      "spec_change_rules",
       "simple_language_explanation",
       "machine_readable_state_update"
     ]
@@ -119,5 +152,5 @@
     ],
     "language": "plain Spanish, child-understandable when possible"
   },
-  "state_sha256": "44be1e2c2a51ea40f6ea4dd7072c74800a3d68c7b150288202074c65cc9cba39"
+  "state_sha256": "8edaf2d39ce218aac2b24f2de5a291b54d9bae0d8dbbbf84afec57c309655416"
 }
