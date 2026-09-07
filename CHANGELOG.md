@@ -1,36 +1,31 @@
 # CHANGELOG
 
+## v0.6
+- Se crea eBTR: barrera efectiva después de colapsar dependencias compartidas.
+- Se crea DCR-1: aprobaciones con una raíz crítica compartida cuentan como un mismo dominio efectivo.
+- Se crea UNI-1: una independencia desconocida no se presume.
+- Se crea Certificado de Independencia para signers críticos.
+- El modelo demuestra que 12 cuentas en 3 organizaciones pueden reducir el corte efectivo a 2.
+- Una raíz de firma o identidad compartida puede reducir el corte efectivo a 1.
+- El validador acepta 8 raíces separadas y rechaza 8 firmas controladas por sólo 2 organizaciones.
+- Se registra PERSISTENCE-001: la rama main de GitHub fue observada sin protección.
+- Próximo objetivo: COMMON-MODE-001.
+
 ## v0.5
-- Se completa ROOT-TRUST-001 a nivel de modelo.
-- Se crea el Piso Constitucional de Seguridad: políticas normales pueden endurecer, no debilitar mínimos.
-- Se crea BTR-8 candidato: las tres rutas principales modeladas requieren 8 compromisos independientes.
-- Se modela evidencia falsa: 2/3 en cuatro cámaras separadas = 8.
-- Se modela cambio malicioso del Núcleo: 4/7 + 2/3 + 2/3 = 8.
-- Se modela recuperación raíz abusiva: 5/9 + 3/5 = 8.
-- Se define que GitHub es persistencia, no autoridad de verdad.
-- Se crea protocolo de rotación/revocación de claves.
-- Se registra explícitamente: probado en modelo, no demostrado en producción.
-- Próximo objetivo: fallos compartidos y dependencias ocultas (SYSTEMIC-RISK-001).
+- ROOT-TRUST-001 completado a nivel de modelo.
+- Piso Constitucional de Seguridad.
+- BTR-8 candidato.
+- Rotación y recuperación de claves.
+- GitHub se define como persistencia, no autoridad.
 
 ## v0.4
-- Se crea el repositorio público `miguelcastill85-del/HEBRA` como memoria versionada principal.
-- Se completa y verifica la carga inicial.
-- Se crea CANON, STATE y protocolo de continuidad.
-- Se hace obligatoria la explicación simple.
+- Repositorio público y continuidad persistente.
 
 ## v0.3
-- Constitución Cero.
-- Roadmap de coste cero.
-- Modelo acotado de ICC-0.
-- Primera especificación TLA+.
+- Constitución Cero y roadmap coste cero.
 
 ## v0.2
-- HEBRA ZERO / Núcleo Cristal.
-- ICC-0.
-- Kernel de referencia y pruebas adversariales.
+- HEBRA ZERO / Núcleo Cristal / ICC-0.
 
 ## v0.1
-- Primer protocolo estructurado.
-- Modelo de amenazas.
-- Motor de referencia.
-- Primera simulación adversarial.
+- Primer protocolo, amenazas y simulación.
