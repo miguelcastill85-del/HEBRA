@@ -1,6 +1,6 @@
 {
   "project": "HEBRA",
-  "state_version": "0.5",
+  "state_version": "0.6",
   "status": "active_design_and_verification",
   "purpose": "Ayudar a las personas a resolver problemas de forma segura, verificable y reutilizable.",
   "non_negotiable_rules": [
@@ -15,7 +15,8 @@
     "deterministic_trusted_state",
     "persistence_is_not_trust_authority",
     "constitutional_safety_floor_cannot_be_weakened_by_ordinary_policy",
-    "independence_means_distinct_failure_domain",
+    "dependency_collapse_rule_DCR1",
+    "unknown_is_not_independent_UNI1",
     "plain_language_explanation_before_and_after_major_changes",
     "persistent_versioned_project_state",
     "uncertainty_must_be_explicit"
@@ -26,66 +27,73 @@
   },
   "candidate_properties": {
     "BTR-8": {
-      "meaning": "Modeled contamination paths require at least 8 independent trust-domain compromises.",
+      "type": "structural_nominal",
       "status": "PROBADO_EN_MODELO_NO_DEMOSTRADO_EN_PRODUCCION",
-      "paths": {
-        "false_evidence_promotion": 8,
-        "malicious_kernel_release": 8,
-        "emergency_root_takeover": 8
-      }
+      "minimum": 8
+    },
+    "eBTR": {
+      "type": "topology_dependent_effective_barrier",
+      "rule": "Collapse known shared failure roots before counting authority.",
+      "production_claim_requirement": "eBTR >= 8"
     }
   },
-  "root_trust_v0_5": {
-    "constitutional_safety_floor": true,
-    "evidence_gate": {
-      "provenance": "2-of-3",
-      "measurement": "2-of-3",
-      "methodology": "2-of-3",
-      "safety": "2-of-3",
-      "cross_chamber_overlap_allowed": false
+  "systemic_risk_v0_6": {
+    "model_findings": {
+      "12_accounts_3_orgs": 2,
+      "shared_signing_root": 1,
+      "12_distinct_control_domains": 8,
+      "shared_identity_root": 1
     },
-    "kernel_release_gate": {
-      "release_guardians": "4-of-7",
-      "reproducible_builders": "2-of-3",
-      "release_auditors": "2-of-3",
-      "cross_chamber_overlap_allowed": false
-    },
-    "emergency_recovery_gate": {
-      "recovery_guardians": "5-of-9",
-      "recovery_auditors": "3-of-5",
-      "cross_chamber_overlap_allowed": false
-    },
-    "bootstrap_warning": "These distributed chambers are not yet deployed in production."
+    "independence_certificate_required_fields": [
+      "signer_id",
+      "operator_control_id",
+      "organization_control_id",
+      "key_custody_root_id",
+      "identity_root_id",
+      "signing_service_root_id",
+      "recovery_controller_id",
+      "verifier_implementation_family",
+      "build_provenance_root"
+    ],
+    "unknown_dependency_policy": "does_not_establish_independence",
+    "same_effective_domain_across_chambers_allowed": false
   },
-  "known_limitations": [
-    "BTR-8 depends on genuine independence between failure domains.",
-    "Correlated/common-mode failures are not yet modeled.",
-    "ICC-0 is not yet formally proven for a hardened production implementation.",
-    "External real-world truth cannot be guaranteed cryptographically.",
-    "Endpoint compromise can deceive that endpoint even if canonical state remains intact.",
-    "Current GitHub main branch is persistence infrastructure, not a trust root."
-  ],
   "completed_milestones": [
     "Z0-specification-and-adversarial-prototypes",
     "Z1-public-repository-bootstrap-complete",
-    "ROOT-TRUST-001-structural-model-complete"
+    "ROOT-TRUST-001-structural-model-complete",
+    "SYSTEMIC-RISK-001-known-dependency-model-complete"
   ],
-  "artifacts_v0_5": [
-    "security/ROOT_TRUST_ARCHITECTURE_v0.5.md",
-    "security/ROOT_TRUST_THREAT_TREE_v0.5.md",
-    "security/KEY_ROTATION_RECOVERY_v0.5.md",
-    "docs/ROOT_TRUST_SIMPLE_v0.5.md",
-    "tests/root_trust_min_cut_model_v0.5.py",
-    "tests/root_trust_min_cut_results_v0.5.json"
+  "artifacts_v0_6": [
+    "security/SYSTEMIC_INDEPENDENCE_v0.6.md",
+    "docs/SYSTEMIC_RISK_SIMPLE_v0.6.md",
+    "tests/independence_validator_v0.6.py",
+    "tests/systemic_dependency_model_v0.6.py",
+    "tests/systemic_dependency_results_v0.6.json"
+  ],
+  "known_limitations": [
+    "DCR-1 can collapse known dependencies but cannot discover all hidden dependencies.",
+    "Common-mode software/compiler/cryptographic failures are not yet solved.",
+    "BTR-8 is not yet a production guarantee.",
+    "Current GitHub main branch was observed unprotected.",
+    "Current checkpoints are unsigned bootstrap checkpoints."
+  ],
+  "pending_risks": [
+    {
+      "id": "PERSISTENCE-001",
+      "issue": "GitHub main branch observed unprotected.",
+      "impact": "History/persistence can be rewritten by sufficiently privileged GitHub access; GitHub is therefore not a trust root.",
+      "status": "open"
+    }
   ],
   "next_recommended_step": {
-    "id": "SYSTEMIC-RISK-001",
-    "goal": "Modelar fallos compartidos y dependencias ocultas que podrían derribar varias partes independientes a la vez.",
+    "id": "COMMON-MODE-001",
+    "goal": "Reducir fallos compartidos de software, compiladores, criptografía y otros componentes que podrían afectar varias raíces independientes a la vez.",
     "deliverables": [
-      "common_mode_failure_graph",
-      "independence_validator",
-      "correlated_attack_simulation",
-      "bootstrap_vs_public_trust_modes",
+      "common_mode_dependency_model",
+      "multi_implementation_strategy",
+      "cryptographic_agility_policy",
+      "deterministic_cross_check_protocol",
       "simple_language_explanation",
       "machine_readable_state_update"
     ]
@@ -93,16 +101,23 @@
   "github": {
     "repository": "miguelcastill85-del/HEBRA",
     "visibility": "public",
-    "status": "active_primary_versioned_memory",
     "role": "Primary durable versioned memory, not canonical trust authority.",
-    "bootstrap_status": "complete_verified",
-    "main_branch_protected_observed": false,
-    "note": "Unprotected main is a persistence risk to address, but GitHub is not allowed to be the canonical trust root."
+    "main_branch_protected_observed": false
   },
   "communication_rule": {
-    "before_major_action": ["what I will do", "why it matters", "main risk"],
-    "after_major_action": ["what I did", "result", "what changed", "what remains uncertain", "next step"],
+    "before_major_action": [
+      "what I will do",
+      "why it matters",
+      "main risk"
+    ],
+    "after_major_action": [
+      "what I did",
+      "result",
+      "what changed",
+      "what remains uncertain",
+      "next step"
+    ],
     "language": "plain Spanish, child-understandable when possible"
   },
-  "state_sha256": "8ca234d6245241e5c062e7031ccb2ba55e880e55871271d192ad13e2afb94f90"
+  "state_sha256": "44be1e2c2a51ea40f6ea4dd7072c74800a3d68c7b150288202074c65cc9cba39"
 }
