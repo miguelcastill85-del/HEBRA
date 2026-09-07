@@ -1,0 +1,33 @@
+{
+  "all_agree_valid": {
+    "status": "PROMOTION_ELIGIBLE",
+    "transition_hash": "78fe766942bedbe86552b6a84ce50203ef3b0639f428850dd02100b7ca2d09a5",
+    "next_trusted_root": "f9f375741f80aac7b0a2351b4f6eaa2ec71a79d6c0b8e91f84ab5d279dab9990"
+  },
+  "one_wrong_root": {
+    "status": "HALT_DIVERGENCE",
+    "field": "next_trusted_root",
+    "values": [
+      "3573eac55059b7ec883ceebe48304dd30cc2c617eec64a1dd4bf39ff2f28f3cd",
+      "f9f375741f80aac7b0a2351b4f6eaa2ec71a79d6c0b8e91f84ab5d279dab9990"
+    ]
+  },
+  "one_false_accept": {
+    "status": "HALT_DIVERGENCE",
+    "field": "verdict",
+    "values": [
+      "ACCEPT",
+      "REJECT"
+    ]
+  },
+  "all_agree_reject": {
+    "status": "NO_PROMOTION",
+    "verdict": "REJECT"
+  },
+  "shared_dependency_detected": {
+    "status": "HALT_DEPENDENCY"
+  },
+  "root_crypto_incomplete": {
+    "status": "HALT_CRYPTO"
+  }
+}
