@@ -1,0 +1,16 @@
+{
+  "static_checks": {
+    "no_http_external_reference": true,
+    "no_fetch_call": true,
+    "no_xmlhttprequest": true,
+    "no_websocket": true,
+    "connect_src_none": true,
+    "import_recomputes_contract_hash": true,
+    "import_recomputes_result_hash": true,
+    "integrity_limit_explained": true
+  },
+  "all_static_checks_pass": true,
+  "node_syntax_ok": true,
+  "node_stderr": "",
+  "browser_dom_integration_test": "not_run_jsdom_unavailable"
+}
